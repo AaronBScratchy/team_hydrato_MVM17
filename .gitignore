@@ -76,3 +76,7 @@ crashlytics-build.properties
 fmod_editor.log
 team_hydrato_MVM17_project/UserSettings/
 team_hydrato_MVM17_project/UserSettings/EditorUserSettings.asset
+team_hydrato_MVM17_project/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+team_hydrato_MVM17_project/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset
+team_hydrato_MVM17_project/UserSettings/EditorUserSettings.asset
+team_hydrato_MVM17_project/UserSettings/Layouts/default-2021.dwlt
