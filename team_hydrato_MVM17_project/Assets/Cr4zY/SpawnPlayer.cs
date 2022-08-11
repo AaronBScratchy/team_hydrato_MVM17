@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] PlayerInit playerPrefab;
+    void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instantiate(playerPrefab, transform.position, transform.rotation).Init();
+        Destroy(gameObject);
     }
 }

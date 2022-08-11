@@ -8,7 +8,7 @@ public abstract class AbstractState : ScriptableObject
     protected PlayerAnimation anim;
     protected PlayerMovement movement;
     protected PlayerStateMachine stateMachine;
-    protected Action<int> OnExit;
+    public Action<State> OnExit;
     public virtual void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
     {
 
