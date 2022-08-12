@@ -63,10 +63,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8dcdda97d11b64a80efc9a6230092b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 15
-  maxAirSpeed: 10
-  acceleration: 62.5
-  airAcceleration: 47.5
+  maxSpeed: 7.5
+  maxAirSpeed: 5
+  acceleration: 24
+  airAcceleration: 16.5
   jumpForce: 12.5
   gravityScale: 30
 --- !u!114 &1542814189104024298

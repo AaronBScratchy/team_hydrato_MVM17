@@ -3,6 +3,7 @@ internal class PS_Running : AbstractUpdatingState
 {
     public override void OnStateEnter(PIA actions)
     {
+        base.OnStateEnter(actions);
         actions.World.Horizontal.canceled += Rest;
         actions.World.Jump.performed += Jump;
         movement.falling += Fall;
@@ -11,6 +12,7 @@ internal class PS_Running : AbstractUpdatingState
 
     public override void OnStateExit(PIA actions)
     {
+        base.OnStateExit(actions);
         actions.World.Horizontal.canceled -= Rest;
         actions.World.Jump.performed -= Jump;
         movement.falling -= Fall;

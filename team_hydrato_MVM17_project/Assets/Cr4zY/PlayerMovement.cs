@@ -58,14 +58,19 @@ public class PlayerMovement : MonoBehaviour
         float xCom = rb.velocity.x;
         float yCom = rb.velocity.y;
 
-        if (FacingPosX ^ xCom > 0)
+        xCom += MoveX.ReadValue<float>() * acceleration * Time.fixedDeltaTime;
+        xCom = (FacingPosX ? Mathf.Min(xCom, maxSpeed) : Mathf.Max(xCom, -maxSpeed));
+        if (rb.velocity.x != 0)
         {
-            turn?.Invoke();
-            return;
+            if (FacingPosX ^ xCom > 0)
+            {
+                turn?.Invoke();
+                return;
+            }
         }
 
-        xCom += MoveX.ReadValue<float>() * airAcceleration * Time.fixedDeltaTime;
-        xCom = (FacingPosX ? Mathf.Min(xCom, maxSpeed) : Mathf.Max(xCom, -maxSpeed));
+        FacingPosX = MoveX.ReadValue<float>() != 0 ? (MoveX.ReadValue<float>() > 0) : FacingPosX;
+
         Debug.Log(xCom);
 
         rb.velocity = new(xCom, yCom);
@@ -78,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         float yCom = rb.velocity.y;
 
         bool rising = yCom > 0;
+
 
         xCom += MoveX.ReadValue<float>() * airAcceleration * Time.fixedDeltaTime;
         xCom = (FacingPosX ? Mathf.Min(xCom, maxAirSpeed) : Mathf.Max(xCom, -maxAirSpeed));

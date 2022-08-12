@@ -11,6 +11,7 @@ internal abstract class AbstractUpdatingState : AbstractState
 
     public override void OnStateEnter(PIA actions)
     {
+        base.OnStateEnter(actions);
         stateMachine.onFixedUpdate += OnFixedUpdate;
         stateMachine.onUpdate += OnUpdate;
     }

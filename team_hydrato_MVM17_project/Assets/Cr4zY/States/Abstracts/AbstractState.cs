@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbstractState : ScriptableObject
@@ -18,7 +17,10 @@ public abstract class AbstractState : ScriptableObject
 
     }
 
-    public abstract void OnStateEnter(PIA actions);
+    public virtual void OnStateEnter(PIA actions)
+    {
+        Debug.Log(name);
+    }
     public abstract void OnStateExit(PIA actions);
 
 }
