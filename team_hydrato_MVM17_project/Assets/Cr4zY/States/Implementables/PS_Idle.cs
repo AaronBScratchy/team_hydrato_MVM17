@@ -1,13 +1,15 @@
 ﻿
 using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 internal class PS_Idle : AbstractUpdatingState
 {
+
     public override void OnStateEnter(PIA actions)
     {
         base.OnStateEnter(actions);
-        movement.RestRB();
+
         actions.World.Horizontal.performed += StartRun;
         actions.World.Jump.performed += Jump;
     }

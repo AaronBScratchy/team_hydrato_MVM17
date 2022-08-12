@@ -42,6 +42,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     }
 
+
     private void StateTransition(State obj)
     {
         AbstractState targetState = obj switch
