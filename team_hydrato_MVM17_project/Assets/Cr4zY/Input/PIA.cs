@@ -134,7 +134,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""978511dc-c13b-4c09-9f46-572e3e0c1ca1"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
