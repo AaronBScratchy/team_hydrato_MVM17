@@ -26,6 +26,7 @@ internal class PS_Turning : AbstractUpdatingState
     public override void OnStateExit(PIA actions)
     {
         base.OnStateExit(actions);
+
         movement.turnComplete -= Run;
         movement.falling -= Fall;
         actions.World.Jump.performed -= Jump;

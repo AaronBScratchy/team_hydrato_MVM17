@@ -12,16 +12,16 @@ internal class PS_Running : AbstractUpdatingState
     {
         if (movement.Moving)
         {
-            Debug.Log("Run input during movement");
+            //Debug.Log("Run input during movement");
             if (movement.GetComponent<Rigidbody2D>().velocity.x > 0 ^ actions.World.Horizontal.ReadValue<float>() > 0)
             {
                 Turn();
                 return;
             }
 
-            Debug.Log("Velocity:\t"+movement.GetComponent<Rigidbody2D>().velocity.x);
-            Debug.Log("Input horizontal:\t"+actions.World.Horizontal.ReadValue<float>());
-            Debug.Log("Values are aligned, continuing into run state...");
+            //Debug.Log("Velocity:\t"+movement.GetComponent<Rigidbody2D>().velocity.x);
+            //Debug.Log("Input horizontal:\t"+actions.World.Horizontal.ReadValue<float>());
+            //Debug.Log("Values are aligned, continuing into run state...");
         }
         
         base.OnStateEnter(actions);

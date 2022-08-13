@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float xCom = rb.velocity.x;
         float yCom = rb.velocity.y;
+        
         if (xCom == 0)
         {
             //early exit at 0 horizontal speed
@@ -65,6 +66,9 @@ public class PlayerMovement : MonoBehaviour
         //Apply deceleration and cap at 0
         xCom -= (xCom > 0 ? 1.75f : -1.75f) * acceleration * Time.fixedDeltaTime;
         xCom = FacingPosX ? Mathf.Max(xCom, 0) : Mathf.Min(xCom, 0);
+
+        //gravity applied here
+        yCom -= gravityScale * Time.fixedDeltaTime;
 
         //Update velocity 
         rb.velocity = new(xCom, yCom);
@@ -81,6 +85,9 @@ public class PlayerMovement : MonoBehaviour
         //apply horizontal acceleration
         xCom += MoveX.ReadValue<float>() * acceleration * Time.fixedDeltaTime;
         xCom = (FacingPosX ? Mathf.Min(xCom, maxSpeed) : Mathf.Max(xCom, -maxSpeed));
+
+        //gravity applied here
+        yCom -= gravityScale * Time.fixedDeltaTime;
 
         //Catch turn attempt logic
         if (rb.velocity.x != 0)
@@ -110,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
         float xCom = rb.velocity.x;
         float yCom = rb.velocity.y;
 
+        //bool rising = yCom > 0;
+
         xCom += MoveX.ReadValue<float>() * airAcceleration * Time.fixedDeltaTime;
         xCom = (FacingPosX ? Mathf.Min(xCom, maxAirSpeed) : Mathf.Max(xCom, -maxAirSpeed));
 
@@ -119,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new(xCom, yCom);
 
         //Fall catch logic
-        if (rb.velocity.y < 0)
+        if (yCom < 0)
         {
             falling?.Invoke();
         }
@@ -163,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        rb.velocity = MoveX.ReadValue<float>() * Vector2.right * maxSpeed;
+        rb.velocity = (MoveX.ReadValue<float>() * Vector2.right * maxSpeed) + Vector2.down;
     }
 
     //Halts rigidbody
@@ -209,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider == currentGround)
         {
             currentGround = null;
+            if(rb.velocity.y > 0) { return; }
             falling?.Invoke();
             return;
         }
@@ -221,6 +231,5 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        Debug.Log("Irrelevant");
     }
 }
