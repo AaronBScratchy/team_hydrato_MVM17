@@ -3,11 +3,13 @@ using UnityEngine;
 
 public abstract class AbstractState : ScriptableObject
 {
-    protected SO_AnimationClip clip;
+    protected SpriteAnimationClip clip;
     protected PlayerAnimation anim;
     protected PlayerMovement movement;
     protected PlayerStateMachine stateMachine;
     public Action<State> OnExit;
+
+    //Initialiser references relevant monobehaviour components
     public virtual void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
     {
         anim = _a;
@@ -15,10 +17,13 @@ public abstract class AbstractState : ScriptableObject
         stateMachine = _s;
     }
 
+    //Behaviour to run when the state starts
     public virtual void OnStateEnter(PIA actions)
     {
         Debug.Log(name);
     }
+    
+    //Behaviour to run when the state stops running
     public abstract void OnStateExit(PIA actions);
 
 }

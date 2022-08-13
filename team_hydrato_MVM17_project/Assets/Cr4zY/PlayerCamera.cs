@@ -12,6 +12,8 @@ internal class PlayerCamera : MonoBehaviour
 
         cam.position = player.position + offset;
     }
+
+    //Camera moves towards position of player + offset, lerp allows for smoothed delay
     private void FixedUpdate()
     {
 

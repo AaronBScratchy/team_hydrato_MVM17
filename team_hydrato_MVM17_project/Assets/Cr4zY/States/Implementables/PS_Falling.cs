@@ -6,7 +6,7 @@ internal class PS_Falling : AbstractUpdatingState
     {
         base.Init(_a, _m, _s);
         name = "Falling";
-        clip = Resources.Load<SO_AnimationClip>("AnimationClips/FallLoop");
+        clip = Resources.Load<SpriteAnimationClip>("AnimationClips/FallLoop");
     }
     public override void OnStateEnter(PIA actions)
     {

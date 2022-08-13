@@ -21,7 +21,10 @@ internal abstract class AbstractUpdatingState : AbstractState
         stateMachine.onFixedUpdate -= OnFixedUpdate;
         stateMachine.onUpdate -= OnUpdate;
     }
+
+    //Behaviour to run per frame
     protected abstract void OnUpdate();
 
+    //Behaviour to run per fixed update
     protected abstract void OnFixedUpdate();
 }

@@ -7,7 +7,7 @@ internal class PS_Idle : AbstractUpdatingState
     {
         base.Init(_a, _m, _s);
         name = "Idle";
-        clip = Resources.Load<SO_AnimationClip>("AnimationClips/Idle");
+        clip = Resources.Load<SpriteAnimationClip>("AnimationClips/Idle");
     }
 
     public override void OnStateEnter(PIA actions)

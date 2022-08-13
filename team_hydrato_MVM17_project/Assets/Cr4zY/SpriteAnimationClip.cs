@@ -3,18 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//A data structure for a queue of sprite animation frames
 [CreateAssetMenu]
-public class SO_AnimationClip : ScriptableObject
+public class SpriteAnimationClip : ScriptableObject
 {
-    [SerializeField] SO_AnimationFrame[] frames;
-    public SO_AnimationFrame[] GetFrames()
+    [SerializeField] SpriteAnimationFrame[] frames;
+    public SpriteAnimationFrame[] GetFrames()
     {
         return frames;
     }
 }
 
+//Struct containing sprite animation frame data
 [Serializable]
-public struct SO_AnimationFrame
+public struct SpriteAnimationFrame
 {
     public Sprite Sprite { get { return _sprite; } }
     public float Time { get { return _time; } }
