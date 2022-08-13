@@ -7,6 +7,10 @@ using UnityEngine;
 public class SO_AnimationClip : ScriptableObject
 {
     [SerializeField] SO_AnimationFrame[] frames;
+    public SO_AnimationFrame[] GetFrames()
+    {
+        return frames;
+    }
 }
 
 [Serializable]

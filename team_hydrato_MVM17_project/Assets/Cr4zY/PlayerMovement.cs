@@ -71,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
 
         FacingPosX = MoveX.ReadValue<float>() != 0 ? (MoveX.ReadValue<float>() > 0) : FacingPosX;
 
-        Debug.Log(xCom);
-
         rb.velocity = new(xCom, yCom);
 
     }
@@ -110,9 +108,9 @@ public class PlayerMovement : MonoBehaviour
     public void ApplyTurn()
     {
 
-        if (rb.velocity.x == 0)
+        if (Mathf.Abs(rb.velocity.x) < maxSpeed * 0.2f)
         {
-            rb.velocity = 0.8f * maxSpeed * (FacingPosX ? Vector2.right : Vector2.left);
+            rb.velocity = 0.5f * maxSpeed * (FacingPosX ? Vector2.right : Vector2.left);
             turnComplete?.Invoke();
             return;
         }

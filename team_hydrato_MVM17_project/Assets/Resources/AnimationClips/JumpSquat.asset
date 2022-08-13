@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc6f5f25498ab42a2b89eb4085b90a, type: 3}
+  m_Name: JumpSquat
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: 921845813, guid: 8ab40280f5bd6da44b85646224c78318, type: 3}
+    _time: 0.02
+  - _sprite: {fileID: -671642654, guid: 8ab40280f5bd6da44b85646224c78318, type: 3}
+    _time: 0.02
+  - _sprite: {fileID: -1176977932, guid: 8ab40280f5bd6da44b85646224c78318, type: 3}
+    _time: 0.02

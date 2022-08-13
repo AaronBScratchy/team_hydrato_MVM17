@@ -1,13 +1,37 @@
-﻿using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 internal class PS_Running : AbstractUpdatingState
 {
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    {
+        base.Init(_a, _m, _s);
+        name = "Running";
+        clip = Resources.Load<SO_AnimationClip>("AnimationClips/Run");
+    }
     public override void OnStateEnter(PIA actions)
     {
+        if (movement.Moving)
+        {
+            Debug.Log("Run input during movement");
+            if (movement.GetComponent<Rigidbody2D>().velocity.x > 0 ^ actions.World.Horizontal.ReadValue<float>() > 0)
+            {
+                Turn();
+                return;
+            }
+
+            Debug.Log("Velocity:\t"+movement.GetComponent<Rigidbody2D>().velocity.x);
+            Debug.Log("Input horizontal:\t"+actions.World.Horizontal.ReadValue<float>());
+            Debug.Log("Values are aligned, continuing into run state...");
+        }
+        
         base.OnStateEnter(actions);
+
+        anim.SetFlip(actions.World.Horizontal.ReadValue<float>() < 0);
+        anim.PlayAnimation(clip, true);
+
         actions.World.Horizontal.canceled += Rest;
         actions.World.Jump.performed += Jump;
         movement.falling += Fall;
-        movement.turn += Turn;
     }
 
     public override void OnStateExit(PIA actions)
@@ -16,7 +40,6 @@ internal class PS_Running : AbstractUpdatingState
         actions.World.Horizontal.canceled -= Rest;
         actions.World.Jump.performed -= Jump;
         movement.falling -= Fall;
-        movement.turn -= Turn;
     }
 
     protected override void OnFixedUpdate()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ab40280f5bd6da44b85646224c78318
+guid: 02ab8e760baa63b4f998738bc0d44555
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jumping_0
+      name: Falling_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d283f42092bcdb44aa95b91a7795f720
-      internalID: 921845813
+      spriteID: 529da5793cef6a3439192556fc3433c8
+      internalID: -751178790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jumping_1
+      name: Falling_1
       rect:
         serializedVersion: 2
         x: 64
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ce29ade9d1e97243a0e7c2ccc1750ac
-      internalID: -671642654
+      spriteID: 7a88e934690c129489d62f32e2902ea2
+      internalID: 1733511155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jumping_2
+      name: Falling_2
       rect:
         serializedVersion: 2
         x: 128
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71f6d1f440cd15e44822226bfc074b2a
-      internalID: -1176977932
+      spriteID: 6ae2c8798bdd8dd4fad4667c480873ac
+      internalID: -940167239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jumping_3
+      name: Falling_3
       rect:
         serializedVersion: 2
         x: 192
@@ -181,113 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97666791e3e25eb488fb66ed013af3f2
-      internalID: -2015210885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jumping_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1c9f2d5e42ef5c4a9aa16bc32301b79
-      internalID: -1553318978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jumping_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9e241508881f394fa748a8f92d29ac9
-      internalID: -1341316176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jumping_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9b098180f0de9c458f74ba71bf374b3
-      internalID: 178334635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jumping_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62724765c6ea46d48aa19f38c45e335f
-      internalID: -1493388602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jumping_8
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23ab718f7556bab42b35fbeebfb8093f
-      internalID: -1343808524
+      spriteID: 4744e10b0d7362d4881aea22fc26830a
+      internalID: -1963641869
       vertices: []
       indices: 
       edges: []
@@ -303,15 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jumping_4: -1553318978
-      Jumping_2: -1176977932
-      Jumping_7: -1493388602
-      Jumping_6: 178334635
-      Jumping_8: -1343808524
-      Jumping_5: -1341316176
-      Jumping_0: 921845813
-      Jumping_1: -671642654
-      Jumping_3: -2015210885
+      Falling_1: 1733511155
+      Falling_0: -751178790
+      Falling_2: -940167239
+      Falling_3: -1963641869
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,24 +1,33 @@
-﻿using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 internal class PS_Turning : AbstractUpdatingState
 {
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    {
+        base.Init(_a, _m, _s);
+
+        name = "Turning";
+        clip = Resources.Load<SO_AnimationClip>("AnimationClips/Idle");
+    }
+
     public override void OnStateEnter(PIA actions)
     {
+        base.OnStateEnter(actions);
+
         movement.Turn();
+        anim.Flip();
+
         movement.turnComplete += Run;
         movement.falling += Fall;
-        movement.wallTouch += Idle;
-        movement.turn += TurnAndRun;
         actions.World.Jump.performed += Jump;
         actions.World.Horizontal.canceled += Idle;
     }
 
     public override void OnStateExit(PIA actions)
     {
-        movement.Turn();
+        base.OnStateExit(actions);
         movement.turnComplete -= Run;
         movement.falling -= Fall;
-        movement.wallTouch -= Idle;
-        movement.turn -= TurnAndRun;
         actions.World.Jump.performed -= Jump;
         actions.World.Horizontal.canceled -= Idle;
     }
@@ -35,12 +44,6 @@ internal class PS_Turning : AbstractUpdatingState
     private void Run()
     {
         OnExit?.Invoke(State.Running);
-    }
-
-    private void TurnAndRun()
-    {
-        movement.Turn();
-        Run();
     }
 
     private void Fall()
