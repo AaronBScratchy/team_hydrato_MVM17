@@ -144,6 +144,17 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""04066185-c582-4d6c-8133-f7a3ab9fd77a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9ce61efb-05fd-4761-8d6e-60af219d68dd"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",

@@ -188,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
         //Catching horizontal surface - landing
         if (Vector2.Dot(collision.GetContact(collision.contactCount - 1).normal, Vector2.up) > 0.85f)
         {
+            currentGround = collision.collider;
             OnLand();
             return;
         }
@@ -219,5 +220,7 @@ public class PlayerMovement : MonoBehaviour
             wallLeft?.Invoke();
             return;
         }
+
+        Debug.Log("Irrelevant");
     }
 }
