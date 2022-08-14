@@ -24,12 +24,14 @@ public class PlayerMovement : MonoBehaviour
     //Stats and counters
     private int MaxJumps;
     private int jumpsLeft;
+    private float currentJumpForce = -1;
 
     [SerializeField] float maxSpeed = 15;
     [SerializeField] float maxAirSpeed = 10;
     [SerializeField] float acceleration = 62.5f;
     [SerializeField] float airAcceleration = 47.5f;
-    [SerializeField] float jumpForce = 45;
+    [SerializeField] float minJumpForce = 25;
+    [SerializeField] float maxJumpForce = 45;
     [SerializeField] float gravityScale = 90;
     //[SerializeField] float 
     //[SerializeField] float
@@ -134,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new(xCom, yCom);
 
         //Fall catch logic
-        if ( yCom <= 0)
+        if (yCom <= 0)
         {
             falling?.Invoke();
         }
@@ -194,10 +196,24 @@ public class PlayerMovement : MonoBehaviour
     //Adds vertical velocity for a jump
     public void AddJump()
     {
-        if (jumpsLeft > 0)
+        if (jumpsLeft <= 0)
+        { return; }
+        jumpsLeft--;
+        if (currentJumpForce < 0)
         {
-            jumpsLeft--;
-            rb.velocity += Vector2.up * jumpForce;
+            rb.velocity += Vector2.up * maxJumpForce;
+            return;
+        }
+        rb.velocity += Vector2.up * currentJumpForce;
+        currentJumpForce = -1;
+    }
+
+    public void CacheJump(float charge, float max)
+    {
+        if (charge != 0)
+        {
+            float ratio = charge / max;
+            currentJumpForce = Mathf.Lerp(minJumpForce, maxJumpForce, ratio);
         }
     }
 
@@ -229,7 +245,8 @@ public class PlayerMovement : MonoBehaviour
             if (!rb.IsTouching(currentGround))
             {
                 currentGround = null;
-                if (rb.velocity.y<=0){
+                if (rb.velocity.y <= 0)
+                {
                     falling?.Invoke();
                 }
             }
