@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.InputSystem;
 internal class PS_Falling : AbstractUpdatingState
 {
     public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
@@ -10,16 +10,19 @@ internal class PS_Falling : AbstractUpdatingState
     }
     public override void OnStateEnter(PIA actions)
     {
+        TurnAdjust(actions.World.Horizontal.ReadValue<float>());
         base.OnStateEnter(actions);
         anim.PlayAnimation(clip, true);
 
         movement.landed += Land;
+        actions.World.Horizontal.performed += TurnAdjust;
     }
 
     public override void OnStateExit(PIA actions)
     {
         base.OnStateExit(actions);
         movement.landed -= Land;
+        actions.World.Horizontal.performed -= TurnAdjust;
     }
 
     protected override void OnFixedUpdate()
@@ -31,6 +34,14 @@ internal class PS_Falling : AbstractUpdatingState
     {
     }
 
+    private void TurnAdjust(float obj)
+    {
+        movement.TurnToPosX(obj > 0);
+    }
+    private void TurnAdjust(InputAction.CallbackContext obj)
+    {
+        movement.TurnToPosX(obj.ReadValue<float>() > 0);
+    }
     private void Land(bool movementIntended)
     {
         if (movementIntended)

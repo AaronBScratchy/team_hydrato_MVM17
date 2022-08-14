@@ -50,13 +50,12 @@ public class PlayerMovement : MonoBehaviour
         MoveX = pia.World.Horizontal;
 
     }
-
     //Per frame reduction of speed
     public void Decelerate()
     {
         float xCom = rb.velocity.x;
         float yCom = rb.velocity.y;
-        
+
         if (xCom == 0)
         {
             //early exit at 0 horizontal speed
@@ -105,6 +104,10 @@ public class PlayerMovement : MonoBehaviour
         //Update velocity
         rb.velocity = new(xCom, yCom);
 
+        if (Mathf.Abs(rb.velocity.x) > 12)
+        {
+            Debug.Log("e");
+        }
     }
 
     //Per frame velocity calculations for in air
@@ -120,7 +123,10 @@ public class PlayerMovement : MonoBehaviour
         //bool rising = yCom > 0;
 
         xCom += MoveX.ReadValue<float>() * airAcceleration * Time.fixedDeltaTime;
-        xCom = (FacingPosX ? Mathf.Min(xCom, maxAirSpeed) : Mathf.Max(xCom, -maxAirSpeed));
+        if (Mathf.Abs(xCom) > maxAirSpeed)
+        {
+            xCom = (FacingPosX ? Mathf.Min(xCom, maxAirSpeed) : Mathf.Max(xCom, -maxAirSpeed));
+        }
 
         //gravity applied here
         yCom -= gravityScale * Time.fixedDeltaTime;
@@ -128,11 +134,15 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new(xCom, yCom);
 
         //Fall catch logic
-        if (yCom < 0)
+        if ( yCom <= 0)
         {
             falling?.Invoke();
         }
 
+        if (Mathf.Abs(rb.velocity.x) > 12)
+        {
+            Debug.Log("e");
+        }
     }
 
     //Toggle intended direction
@@ -168,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         landed?.Invoke(MoveX.ReadValue<float>() != 0);
 
         //Catch case for landing with movement intent - adds velocity to counter friction on landing halting the player
-        if(MoveX.ReadValue<float>() == 0)
+        if (MoveX.ReadValue<float>() == 0)
         {
             return;
         }
@@ -214,22 +224,24 @@ public class PlayerMovement : MonoBehaviour
     //Collision exit logic
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //Catching ground - falling
-        if (collision.collider == currentGround)
+        if (currentGround != null)
         {
-            currentGround = null;
-            if(rb.velocity.y > 0) { return; }
-            falling?.Invoke();
-            return;
+            if (!rb.IsTouching(currentGround))
+            {
+                currentGround = null;
+                if (rb.velocity.y<=0){
+                    falling?.Invoke();
+                }
+            }
         }
 
-        //Catching wall - leave the wall
-        if (collision.collider == currentWall)
+        if (currentWall != null)
         {
-            currentWall = null;
-            wallLeft?.Invoke();
-            return;
+            if (!rb.IsTouching(currentWall))
+            {
+                currentWall = null;
+                wallLeft?.Invoke();
+            }
         }
-
     }
 }

@@ -25,3 +25,5 @@ MonoBehaviour:
     _time: 0.16
   - _sprite: {fileID: -1343808524, guid: 8ab40280f5bd6da44b85646224c78318, type: 3}
     _time: 0.16
+  - _sprite: {fileID: 21300000, guid: 5bbd629f894b42047b19f6c0b99bbc56, type: 3}
+    _time: 0.16

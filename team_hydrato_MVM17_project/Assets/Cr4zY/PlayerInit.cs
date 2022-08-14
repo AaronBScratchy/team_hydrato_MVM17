@@ -8,6 +8,8 @@ public class PlayerInit : MonoBehaviour
         inputActions.World.Jump.Enable();
         inputActions.World.Horizontal.Enable();
 
+        inputActions.World.Exit.Enable();
+
         PlayerAnimation anim = GetComponent<PlayerAnimation>();
         PlayerMovement moves = GetComponent<PlayerMovement>();
         PlayerStateMachine states = GetComponent<PlayerStateMachine>();
@@ -17,6 +19,9 @@ public class PlayerInit : MonoBehaviour
         moves.Init(inputActions);
         states.Init(anim,moves,inputActions);
         camera.Init(transform);
+
+        inputActions.World.Exit.performed += camera.QuitGame;
+
         Destroy(this);
     }
 

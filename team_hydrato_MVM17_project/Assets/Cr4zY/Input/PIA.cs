@@ -62,6 +62,15 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a7fe2d1-7786-4e6a-8275-5958f42994fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -163,6 +172,17 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81f0e02e-0b77-4317-a431-ef8239dd8c31"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -175,6 +195,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         m_World_Vertical = m_World.FindAction("Vertical", throwIfNotFound: true);
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Crouch = m_World.FindAction("Crouch", throwIfNotFound: true);
+        m_World_Exit = m_World.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +259,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Vertical;
     private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Crouch;
+    private readonly InputAction m_World_Exit;
     public struct WorldActions
     {
         private @PIA m_Wrapper;
@@ -246,6 +268,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         public InputAction @Vertical => m_Wrapper.m_World_Vertical;
         public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Crouch => m_Wrapper.m_World_Crouch;
+        public InputAction @Exit => m_Wrapper.m_World_Exit;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -267,6 +290,9 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnCrouch;
+                @Exit.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_WorldActionsCallbackInterface = instance;
             if (instance != null)
@@ -283,6 +309,9 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
             }
         }
     }
@@ -293,5 +322,6 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         void OnVertical(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }
