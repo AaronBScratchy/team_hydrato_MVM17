@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4104116663918738932}
   - component: {fileID: -1731734659753279212}
   - component: {fileID: -6310172888283819130}
+  - component: {fileID: -2645015929738457852}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -208,3 +209,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 3, z: -12}
+--- !u!114 &-2645015929738457852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766308681852571300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.335593, y: -0.5, z: 0}
+  - {x: -0.13522196, y: 0.49657482, z: 0}
+  - {x: 0.10439566, y: 0.49486226, z: 0}
+  - {x: 0.36470675, y: -0.5, z: 0}
+  m_ShapePathHash: 1572715801
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 59206
