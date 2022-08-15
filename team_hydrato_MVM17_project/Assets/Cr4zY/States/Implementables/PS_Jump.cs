@@ -8,7 +8,7 @@ internal class PS_Jump : AbstractUpdatingState
         base.Init(_a, _m, _s);
 
         name = "Jumping";
-        clip = Resources.Load<SpriteAnimationClip>("AnimationClips/Jump");
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/Jump");
     }
 
     public override void OnStateEnter(PIA actions)

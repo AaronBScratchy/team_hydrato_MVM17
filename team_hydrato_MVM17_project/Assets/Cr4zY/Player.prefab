@@ -69,7 +69,7 @@ MonoBehaviour:
   maxAirSpeed: 8
   acceleration: 24
   airAcceleration: 22
-  minJumpForce: 7.5
+  minJumpForce: 4.5
   maxJumpForce: 12.5
   gravityScale: 30
 --- !u!114 &1542814189104024298

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: Horn_Run
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: -667924488, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -754820221, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 514179546, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -1308771654, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+    _time: 0.12

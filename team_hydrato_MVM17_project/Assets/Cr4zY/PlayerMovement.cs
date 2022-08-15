@@ -208,6 +208,7 @@ public class PlayerMovement : MonoBehaviour
         currentJumpForce = -1;
     }
 
+
     public void CacheJump(float charge, float max)
     {
         if (charge != 0)

@@ -10,7 +10,7 @@ internal class PS_Jumpsquat : AbstractState
         base.Init(_a, _m, _s);
 
         name = "Jump squat";
-        clip = Resources.Load<SpriteAnimationClip>("AnimationClips/JumpSquat");
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/JumpSquat");
     }
 
     public override void OnStateEnter(PIA actions)

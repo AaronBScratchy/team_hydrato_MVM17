@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class AbstractState : ScriptableObject
 {
-    protected SpriteAnimationClip clip;
+    protected AnimationClip clip;
     protected PlayerAnimation anim;
     protected PlayerMovement movement;
     protected PlayerStateMachine stateMachine;

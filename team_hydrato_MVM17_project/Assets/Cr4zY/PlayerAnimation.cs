@@ -1,4 +1,6 @@
 using System;
+using FMOD;
+using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +8,20 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     //Queue of frames
-    private Queue<SpriteAnimationFrame> played = new();
-    private Queue<SpriteAnimationFrame> notYet;
+    private Queue<SpriteAnimationFrame> playedSprites = new();
+    private Queue<SpriteAnimationFrame> waitingSprites;
+    private Queue<SoundEvent> playedSounds = new();
+    private Queue<SoundEvent> queuedSounds;
 
     bool looping;
     bool playing;
+    bool muted;
+
     public Action animOver;
 
     private SpriteRenderer SR;
     private SpriteAnimationFrame currentFrame;
-    
+
     //Get reference to the sprite renderer
     public void Init()
     {
@@ -23,22 +29,24 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     //Start play animation
-    public void PlayAnimation(SpriteAnimationClip clip, bool loop)
+    public void PlayAnimation(AnimationClip clip, bool loop)
     {
         //End currently playing animation
         if (playing)
         {
             CancelInvoke();
-            played.Clear();
+            playedSprites.Clear();
+            playedSounds.Clear();
         }
 
         looping = loop;
+        muted = clip.Muted;
 
         //queue frames from chosen clip
-        notYet = new(clip.GetFrames());
+        waitingSprites = new(clip.GetSprites().GetFrames());
 
         //Get first frame
-        currentFrame = notYet.Dequeue();
+        currentFrame = waitingSprites.Dequeue();
 
         //Update sprite
         UpdateDisplay();
@@ -47,6 +55,31 @@ public class PlayerAnimation : MonoBehaviour
 
         //Invoke next frame call
         Invoke(nameof(FrameShift), currentFrame.Time);
+        if (muted)
+        {
+            return;
+        }
+
+        queuedSounds = new(clip.GetSound().Events);
+        Invoke(nameof(SoundForward), queuedSounds.Peek().Time);
+    }
+
+    public void SoundForward()
+    {
+        if (muted)
+        {
+            return;
+        }
+
+        RuntimeManager.PlayOneShot(queuedSounds.Peek().Event);
+
+        playedSounds.Enqueue(queuedSounds.Dequeue());
+
+        if (queuedSounds.Count == 0)
+        {
+            return;
+        }
+        Invoke(nameof(SoundForward), queuedSounds.Peek().Time);
     }
 
     //Flips the sprite
@@ -71,9 +104,9 @@ public class PlayerAnimation : MonoBehaviour
     private void FrameShift()
     {
         //keep track of played frames here, for case of looping back on animation
-        played.Enqueue(currentFrame);
+        playedSprites.Enqueue(currentFrame);
 
-        if (notYet.Count == 0)
+        if (waitingSprites.Count == 0)
         {
             if (looping)
             {
@@ -85,7 +118,7 @@ public class PlayerAnimation : MonoBehaviour
             animOver?.Invoke();
             return;
         }
-        currentFrame = notYet.Dequeue();
+        currentFrame = waitingSprites.Dequeue();
         UpdateDisplay();
         Invoke(nameof(FrameShift), currentFrame.Time);
     }
@@ -94,19 +127,32 @@ public class PlayerAnimation : MonoBehaviour
     private void RestartCurrentAnimation()
     {
         //skip to the end of current animation
-        while (notYet.Count > 0)
+        while (waitingSprites.Count > 0)
         {
-            played.Enqueue(notYet.Dequeue());
+            playedSprites.Enqueue(waitingSprites.Dequeue());
         }
 
         //queue all frames and clear played frames
-        notYet = new(played);
-        played.Clear();
+        waitingSprites = new(playedSprites);
+        playedSprites.Clear();
 
         //Get first frame and start animation
-        currentFrame = notYet.Dequeue();
+        currentFrame = waitingSprites.Dequeue();
         UpdateDisplay();
 
         Invoke(nameof(FrameShift), currentFrame.Time);
+        if (muted)
+        {
+            return;
+        }
+        while (queuedSounds.Count > 0)
+        {
+            playedSounds.Enqueue(queuedSounds.Dequeue());
+        }
+        queuedSounds = new(playedSounds);
+        playedSounds.Clear();
+
+        Invoke(nameof(SoundForward), queuedSounds.Peek().Time);
+
     }
 }

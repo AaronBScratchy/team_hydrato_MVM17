@@ -6,7 +6,7 @@ internal class PS_Running : AbstractUpdatingState
     {
         base.Init(_a, _m, _s);
         name = "Running";
-        clip = Resources.Load<SpriteAnimationClip>("AnimationClips/Run");
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/Run");
     }
     public override void OnStateEnter(PIA actions)
     {

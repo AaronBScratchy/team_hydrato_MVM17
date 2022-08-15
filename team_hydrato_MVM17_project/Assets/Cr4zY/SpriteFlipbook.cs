@@ -5,7 +5,7 @@ using UnityEngine;
 
 //A data structure for a queue of sprite animation frames
 [CreateAssetMenu]
-public class SpriteAnimationClip : ScriptableObject
+public class SpriteFlipbook : ScriptableObject
 {
     [SerializeField] SpriteAnimationFrame[] frames;
     public SpriteAnimationFrame[] GetFrames()

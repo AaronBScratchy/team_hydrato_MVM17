@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cabc6f5f25498ab42a2b89eb4085b90a, type: 3}
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
   m_Name: FallLoop
   m_EditorClassIdentifier: 
   frames:
   - _sprite: {fileID: -751178790, guid: 02ab8e760baa63b4f998738bc0d44555, type: 3}
-    _time: 0.25
+    _time: 0.16
   - _sprite: {fileID: 1733511155, guid: 02ab8e760baa63b4f998738bc0d44555, type: 3}
-    _time: 0.25
+    _time: 0.16
   - _sprite: {fileID: -940167239, guid: 02ab8e760baa63b4f998738bc0d44555, type: 3}
-    _time: 0.25
+    _time: 0.16
   - _sprite: {fileID: -1963641869, guid: 02ab8e760baa63b4f998738bc0d44555, type: 3}
-    _time: 0.25
+    _time: 0.16
