@@ -16,8 +16,8 @@ MonoBehaviour:
   - _sprite: {fileID: -667924488, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
     _time: 0.12
   - _sprite: {fileID: -754820221, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
-    _time: 0.12
+    _time: 0.1
   - _sprite: {fileID: 514179546, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
     _time: 0.12
   - _sprite: {fileID: -1308771654, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
-    _time: 0.12
+    _time: 0.1

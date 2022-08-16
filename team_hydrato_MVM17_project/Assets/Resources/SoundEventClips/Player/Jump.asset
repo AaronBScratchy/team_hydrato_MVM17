@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0838a3e0ba1cac49a290ababfbf353c, type: 3}
   m_Name: Jump
   m_EditorClassIdentifier: 
-  events: []
+  events:
+  - _event:
+      Guid:
+        Data1: -2120041547
+        Data2: 1265817061
+        Data3: -1549042046
+        Data4: -165330914
+      Path: event:/Characters/Player/PlayerJump
+    _time: 0
