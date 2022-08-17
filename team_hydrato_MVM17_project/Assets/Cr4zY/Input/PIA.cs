@@ -71,6 +71,24 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CharacterSwitchFwd"",
+                    ""type"": ""Button"",
+                    ""id"": ""913010d6-0809-4eae-a1b2-32403825c83d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CharacterSwitchBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4751aab1-81b4-4661-9e1c-1476ecb96191"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -304,6 +322,28 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ff91736-640c-42da-97ca-d54b31759da6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterSwitchFwd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17372398-d4c4-4917-b8a2-0191de42b531"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterSwitchBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -317,6 +357,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Crouch = m_World.FindAction("Crouch", throwIfNotFound: true);
         m_World_Exit = m_World.FindAction("Exit", throwIfNotFound: true);
+        m_World_CharacterSwitchFwd = m_World.FindAction("CharacterSwitchFwd", throwIfNotFound: true);
+        m_World_CharacterSwitchBack = m_World.FindAction("CharacterSwitchBack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -381,6 +423,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Crouch;
     private readonly InputAction m_World_Exit;
+    private readonly InputAction m_World_CharacterSwitchFwd;
+    private readonly InputAction m_World_CharacterSwitchBack;
     public struct WorldActions
     {
         private @PIA m_Wrapper;
@@ -390,6 +434,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Crouch => m_Wrapper.m_World_Crouch;
         public InputAction @Exit => m_Wrapper.m_World_Exit;
+        public InputAction @CharacterSwitchFwd => m_Wrapper.m_World_CharacterSwitchFwd;
+        public InputAction @CharacterSwitchBack => m_Wrapper.m_World_CharacterSwitchBack;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +460,12 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @Exit.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnExit;
                 @Exit.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnExit;
                 @Exit.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnExit;
+                @CharacterSwitchFwd.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchFwd;
+                @CharacterSwitchFwd.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchFwd;
+                @CharacterSwitchFwd.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchFwd;
+                @CharacterSwitchBack.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchBack;
+                @CharacterSwitchBack.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchBack;
+                @CharacterSwitchBack.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchBack;
             }
             m_Wrapper.m_WorldActionsCallbackInterface = instance;
             if (instance != null)
@@ -433,6 +485,12 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @Exit.started += instance.OnExit;
                 @Exit.performed += instance.OnExit;
                 @Exit.canceled += instance.OnExit;
+                @CharacterSwitchFwd.started += instance.OnCharacterSwitchFwd;
+                @CharacterSwitchFwd.performed += instance.OnCharacterSwitchFwd;
+                @CharacterSwitchFwd.canceled += instance.OnCharacterSwitchFwd;
+                @CharacterSwitchBack.started += instance.OnCharacterSwitchBack;
+                @CharacterSwitchBack.performed += instance.OnCharacterSwitchBack;
+                @CharacterSwitchBack.canceled += instance.OnCharacterSwitchBack;
             }
         }
     }
@@ -444,5 +502,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
+        void OnCharacterSwitchFwd(InputAction.CallbackContext context);
+        void OnCharacterSwitchBack(InputAction.CallbackContext context);
     }
 }

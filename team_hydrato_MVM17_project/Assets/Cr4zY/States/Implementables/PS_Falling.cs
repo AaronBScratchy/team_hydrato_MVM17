@@ -15,7 +15,13 @@ internal class PS_Falling : AbstractUpdatingState
         anim.PlayAnimation(clip, true);
 
         movement.landed += Land;
-        actions.World.Horizontal.performed += TurnAdjust;
+        actions.World.Horizontal.performed += TurnAdjust; 
+        movement.wallTouch += WallSlide;
+
+    }
+    private void WallSlide()
+    {
+        OnExit?.Invoke(State.WallSlide);
     }
 
     public override void OnStateExit(PIA actions)
@@ -23,6 +29,7 @@ internal class PS_Falling : AbstractUpdatingState
         base.OnStateExit(actions);
         movement.landed -= Land;
         actions.World.Horizontal.performed -= TurnAdjust;
+        movement.wallTouch -= WallSlide;
     }
 
     protected override void OnFixedUpdate()

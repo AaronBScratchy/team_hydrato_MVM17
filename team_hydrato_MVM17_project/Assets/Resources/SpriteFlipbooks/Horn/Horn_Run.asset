@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Horn_Run
   m_EditorClassIdentifier: 
   frames:
-  - _sprite: {fileID: -667924488, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+  - _sprite: {fileID: 215366023, guid: bdb8a5ce106f22c449f1b6c1007c2973, type: 3}
     _time: 0.12
-  - _sprite: {fileID: -754820221, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+  - _sprite: {fileID: -1346871448, guid: bdb8a5ce106f22c449f1b6c1007c2973, type: 3}
     _time: 0.1
-  - _sprite: {fileID: 514179546, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+  - _sprite: {fileID: 1800451354, guid: bdb8a5ce106f22c449f1b6c1007c2973, type: 3}
     _time: 0.12
-  - _sprite: {fileID: -1308771654, guid: 436e55516dfa0b9468559dff8165a841, type: 3}
+  - _sprite: {fileID: -2085357892, guid: bdb8a5ce106f22c449f1b6c1007c2973, type: 3}
     _time: 0.1

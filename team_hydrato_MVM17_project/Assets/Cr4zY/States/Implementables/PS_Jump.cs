@@ -19,15 +19,20 @@ internal class PS_Jump : AbstractUpdatingState
         anim.PlayAnimation(clip, false);
         movement.falling += Fall;
         actions.World.Horizontal.performed += TurnAdjust;
+        movement.wallTouch += WallSlide;
 
     }
-
+    private void WallSlide()
+    {
+        OnExit?.Invoke(State.WallSlide);
+    }
 
     public override void OnStateExit(PIA actions)
     {
         base.OnStateExit(actions);
         movement.falling -= Fall;
         actions.World.Horizontal.performed -= TurnAdjust;
+        movement.wallTouch -= WallSlide;
     }
 
     protected override void OnFixedUpdate()

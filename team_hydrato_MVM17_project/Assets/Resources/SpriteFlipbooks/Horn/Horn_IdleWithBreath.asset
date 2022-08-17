@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Horn_IdleWithBreath
   m_EditorClassIdentifier: 
   frames:
-  - _sprite: {fileID: -829804168, guid: 13b28e2a6c26f5f40be2900c7880d14a, type: 3}
+  - _sprite: {fileID: 216543412, guid: 34e17ce258c661347aa63c9e164aab74, type: 3}
     _time: 0.25
-  - _sprite: {fileID: -2076986435, guid: 13b28e2a6c26f5f40be2900c7880d14a, type: 3}
+  - _sprite: {fileID: 52773519, guid: 34e17ce258c661347aa63c9e164aab74, type: 3}
     _time: 0.25
-  - _sprite: {fileID: 440214876, guid: 13b28e2a6c26f5f40be2900c7880d14a, type: 3}
+  - _sprite: {fileID: -1223570961, guid: 34e17ce258c661347aa63c9e164aab74, type: 3}
     _time: 0.25
-  - _sprite: {fileID: -2113520314, guid: 13b28e2a6c26f5f40be2900c7880d14a, type: 3}
+  - _sprite: {fileID: 67708248, guid: 34e17ce258c661347aa63c9e164aab74, type: 3}
     _time: 0.25

@@ -9,7 +9,9 @@ public enum State
     Turning,
     JumpSquat,
     Jumping,
-    Falling
+    Falling,
+    WallSlide,
+    WallJump
 }
 
 public class PlayerStateMachine : MonoBehaviour
@@ -30,6 +32,8 @@ public class PlayerStateMachine : MonoBehaviour
             ScriptableObject.CreateInstance<PS_Jumpsquat>(),
             ScriptableObject.CreateInstance<PS_Jump>(),
             ScriptableObject.CreateInstance<PS_Falling>(),
+            ScriptableObject.CreateInstance<PS_WallSlide>(),
+            ScriptableObject.CreateInstance<PS_WallJump>()
         };
 
         foreach (AbstractState state in states)
@@ -53,6 +57,8 @@ public class PlayerStateMachine : MonoBehaviour
             State.JumpSquat => states[3],
             State.Jumping => states[4],
             State.Falling => states[5],
+            State.WallSlide => states[6],
+            State.WallJump => states[7],
             _ => states[0]
         };
 

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     //Rigidbody reference
-    private Rigidbody2D rb;
+    private Rigidbody2D rb, localSpace;
 
     //Last contacted surfaces references
     private Collider2D currentWall, currentGround;
@@ -19,20 +19,22 @@ public class PlayerMovement : MonoBehaviour
     private bool FacingPosX;
 
     //Moving at all
-    public bool Moving { get { return rb.velocity != Vector2.zero; } }
+    public bool Moving { get { return (localSpace == null ? rb.velocity != Vector2.zero : Vector2.Equals(localSpace.velocity, rb.velocity)); } }
 
     //Stats and counters
     private int MaxJumps;
     private int jumpsLeft;
     private float currentJumpForce = -1;
 
-    [SerializeField] float maxSpeed = 15;
-    [SerializeField] float maxAirSpeed = 10;
-    [SerializeField] float acceleration = 62.5f;
-    [SerializeField] float airAcceleration = 47.5f;
-    [SerializeField] float minJumpForce = 25;
-    [SerializeField] float maxJumpForce = 45;
-    [SerializeField] float gravityScale = 90;
+    [SerializeField] float maxSpeed = 8;
+    [SerializeField] float maxAirSpeed = 8;
+    [SerializeField] float acceleration = 24;
+    [SerializeField] float airAcceleration = 24;
+    [SerializeField] float minJumpForce = 4.5f;
+    [SerializeField] float maxJumpForce = 12.5f;
+    [SerializeField] float gravityScale = 3;
+    [SerializeField] float wallSlideSpeed = 0.3f;
+    [SerializeField] float wallJumpForce = 10f;
     //[SerializeField] float 
     //[SerializeField] float
 
@@ -55,10 +57,13 @@ public class PlayerMovement : MonoBehaviour
     //Per frame reduction of speed
     public void Decelerate()
     {
+        if (localSpace != null)
+        {
+        }
         float xCom = rb.velocity.x;
         float yCom = rb.velocity.y;
 
-        if (xCom == 0)
+        if (xCom == 0/*(localSpace == null ? 0 : localSpace.velocity.x)*/)
         {
             //early exit at 0 horizontal speed
             return;
@@ -73,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Update velocity 
         rb.velocity = new(xCom, yCom);
+        ApplyLocalSpaceVelocity();
 
     }
 
@@ -105,11 +111,8 @@ public class PlayerMovement : MonoBehaviour
 
         //Update velocity
         rb.velocity = new(xCom, yCom);
+        ApplyLocalSpaceVelocity();
 
-        if (Mathf.Abs(rb.velocity.x) > 12)
-        {
-            Debug.Log("e");
-        }
     }
 
     //Per frame velocity calculations for in air
@@ -139,11 +142,6 @@ public class PlayerMovement : MonoBehaviour
         if (yCom <= 0)
         {
             falling?.Invoke();
-        }
-
-        if (Mathf.Abs(rb.velocity.x) > 12)
-        {
-            Debug.Log("e");
         }
     }
 
@@ -184,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        rb.velocity = (MoveX.ReadValue<float>() * Vector2.right * maxSpeed) + Vector2.down;
+        rb.velocity = (maxSpeed * MoveX.ReadValue<float>() * Vector2.right) + Vector2.down;
     }
 
     //Halts rigidbody
@@ -198,6 +196,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpsLeft <= 0)
         { return; }
+        LeaveLocalSpace();
         jumpsLeft--;
         if (currentJumpForce < 0)
         {
@@ -261,5 +260,49 @@ public class PlayerMovement : MonoBehaviour
                 wallLeft?.Invoke();
             }
         }
+        if (collision.rigidbody == null)
+        {
+            return;
+        }
+        if (collision.rigidbody == localSpace)
+        {
+            LeaveLocalSpace();
+        }
+    }
+
+    public void SetLocalSpace(Rigidbody2D body)
+    {
+        localSpace = body;
+    }
+
+    public void LeaveLocalSpace()
+    {
+        localSpace = null;
+    }
+
+    public void ApplyLocalSpaceVelocity()
+    {
+        if (localSpace == null)
+        {
+            return;
+        }
+
+        rb.velocity += localSpace.velocity.x * Vector2.right;
+    }
+
+    public void WallSlide()
+    {
+        Debug.Log(wallSlideSpeed);
+        rb.velocity = Vector2.down * wallSlideSpeed;
+    }
+
+    public void WallJump()
+    {
+        rb.velocity = new Vector2(currentWall.ClosestPoint(rb.position).x - rb.position.x < 0 ? 1:-1, 1.5f)*wallJumpForce;
+    }
+
+    public void ToggleGravity()
+    {
+        rb.gravityScale = rb.gravityScale == 0 ? gravityScale : 0;
     }
 }

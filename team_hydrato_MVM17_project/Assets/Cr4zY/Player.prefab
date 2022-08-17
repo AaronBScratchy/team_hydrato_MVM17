@@ -71,7 +71,9 @@ MonoBehaviour:
   airAcceleration: 22
   minJumpForce: 4.5
   maxJumpForce: 12.5
-  gravityScale: 30
+  gravityScale: 3
+  wallSlideSpeed: 1
+  wallJumpForce: 6.5
 --- !u!114 &1542814189104024298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,10 +190,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -236,4 +238,4 @@ MonoBehaviour:
   - {x: 0.36470675, y: -0.5, z: 0}
   m_ShapePathHash: 1572715801
   m_Mesh: {fileID: 0}
-  m_InstanceId: 59206
+  m_InstanceId: 58978

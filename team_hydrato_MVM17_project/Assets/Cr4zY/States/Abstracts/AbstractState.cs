@@ -20,7 +20,7 @@ public abstract class AbstractState : ScriptableObject
     //Behaviour to run when the state starts
     public virtual void OnStateEnter(PIA actions)
     {
-        Debug.Log(name);
+        //Debug.Log(name);
     }
     
     //Behaviour to run when the state stops running
