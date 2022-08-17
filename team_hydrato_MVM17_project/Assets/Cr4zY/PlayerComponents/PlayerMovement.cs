@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public Action<bool> landed;
 
     //Moving to the right
-    private bool FacingPosX;
+    private bool _posX;
+    public bool FacingPosX { get { return _posX; } set { _posX = value; } }
 
     //Moving at all
     public bool Moving { get { return (localSpace == null ? rb.velocity != Vector2.zero : Vector2.Equals(localSpace.velocity, rb.velocity)); } }
@@ -49,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         MaxJumps = 1;
         jumpsLeft = 0;
         rb = GetComponent<Rigidbody2D>();
-        FacingPosX = true;
+        _posX = true;
 
         MoveX = pia.World.Horizontal;
 
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Apply deceleration and cap at 0
         xCom -= (xCom > 0 ? 1.75f : -1.75f) * acceleration * Time.fixedDeltaTime;
-        xCom = FacingPosX ? Mathf.Max(xCom, 0) : Mathf.Min(xCom, 0);
+        xCom = _posX ? Mathf.Max(xCom, 0) : Mathf.Min(xCom, 0);
 
         //gravity applied here
         yCom -= gravityScale * Time.fixedDeltaTime;
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
         //apply horizontal acceleration
         xCom += MoveX.ReadValue<float>() * acceleration * Time.fixedDeltaTime;
-        xCom = (FacingPosX ? Mathf.Min(xCom, maxSpeed) : Mathf.Max(xCom, -maxSpeed));
+        xCom = (_posX ? Mathf.Min(xCom, maxSpeed) : Mathf.Max(xCom, -maxSpeed));
 
         //gravity applied here
         yCom -= gravityScale * Time.fixedDeltaTime;
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         //Catch turn attempt logic
         if (rb.velocity.x != 0)
         {
-            if (FacingPosX ^ xCom > 0)
+            if (_posX ^ xCom > 0)
             {
                 turn?.Invoke();
                 return;
@@ -107,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Update intended direction - this can be moved to somewhere better, doesn't need to run per frame
-        FacingPosX = MoveX.ReadValue<float>() != 0 ? (MoveX.ReadValue<float>() > 0) : FacingPosX;
+        _posX = MoveX.ReadValue<float>() != 0 ? (MoveX.ReadValue<float>() > 0) : _posX;
 
         //Update velocity
         rb.velocity = new(xCom, yCom);
@@ -130,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         xCom += MoveX.ReadValue<float>() * airAcceleration * Time.fixedDeltaTime;
         if (Mathf.Abs(xCom) > maxAirSpeed)
         {
-            xCom = (FacingPosX ? Mathf.Min(xCom, maxAirSpeed) : Mathf.Max(xCom, -maxAirSpeed));
+            xCom = (_posX ? Mathf.Min(xCom, maxAirSpeed) : Mathf.Max(xCom, -maxAirSpeed));
         }
 
         //gravity applied here
@@ -148,13 +149,13 @@ public class PlayerMovement : MonoBehaviour
     //Toggle intended direction
     public void Turn()
     {
-        FacingPosX = !FacingPosX;
+        _posX = !_posX;
     }
 
     //Set intended direction
     public void TurnToPosX(bool posX)
     {
-        FacingPosX = posX;
+        _posX = posX;
     }
 
     //Per frame deceleration for change in direction
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Mathf.Abs(rb.velocity.x) < maxSpeed * 0.2f)
         {
-            rb.velocity = 0.5f * maxSpeed * (FacingPosX ? Vector2.right : Vector2.left);
+            rb.velocity = 0.5f * maxSpeed * (_posX ? Vector2.right : Vector2.left);
             turnComplete?.Invoke();
             return;
         }
@@ -294,15 +295,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log(wallSlideSpeed);
         rb.velocity = Vector2.down * wallSlideSpeed;
+        _posX = currentWall.ClosestPoint(rb.position).x - rb.position.x < 0;
     }
 
     public void WallJump()
     {
-        rb.velocity = new Vector2(currentWall.ClosestPoint(rb.position).x - rb.position.x < 0 ? 1:-1, 1.5f)*wallJumpForce;
+        rb.velocity = new Vector2(currentWall.ClosestPoint(rb.position).x - rb.position.x < 0 ? 1 : -1, 1.5f) * wallJumpForce;
     }
 
     public void ToggleGravity()
     {
         rb.gravityScale = rb.gravityScale == 0 ? gravityScale : 0;
+    }
+
+    public void WallDrop()
+    {
+        rb.velocity = new Vector2(currentWall.ClosestPoint(rb.position).x - rb.position.x < 0 ? 1 : -1, 0) * 0.4f * wallJumpForce;
     }
 }

@@ -14,7 +14,9 @@ public class PS_WallSlide : AbstractState
         base.OnStateEnter(actions);
         movement.ToggleGravity();
         movement.WallSlide();
+        anim.SetFlip(movement.FacingPosX);
         actions.World.Jump.performed += WallJump;
+        actions.World.Crouch.performed += WallDrop;
         movement.landed += OnLand;
         movement.wallLeft += Fall;
         anim.PlayAnimation(clip, false);
@@ -38,11 +40,16 @@ public class PS_WallSlide : AbstractState
     {
         OnExit?.Invoke(State.WallJump);
     }
-
+    private void WallDrop(InputAction.CallbackContext obj)
+    {
+        movement.WallDrop();
+        Fall();
+    }
     public override void OnStateExit(PIA actions)
     {
         movement.ToggleGravity();
         actions.World.Jump.performed -= WallJump;
+        actions.World.Crouch.performed -= WallDrop;
         movement.landed -= OnLand;
         movement.wallLeft -= Fall;
     }

@@ -7,6 +7,7 @@ public class PlayerInit : MonoBehaviour
         PIA inputActions = new();
         inputActions.World.Jump.Enable();
         inputActions.World.Horizontal.Enable();
+        inputActions.World.Crouch.Enable();
 
         inputActions.World.Exit.Enable();
 
