@@ -8,6 +8,7 @@ internal class PS_WallJump : AbstractUpdatingState
     {
         base.Init(_a, _m, _s);
         name = "Wall Jump";
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/WallJump");
     }
     public override void OnStateEnter(PIA actions)
     {
@@ -15,6 +16,8 @@ internal class PS_WallJump : AbstractUpdatingState
         movement.WallJump();
         movement.wallTouch += WallSlide;
         movement.falling += Fall;
+        anim.Flip();
+        anim.PlayAnimation(clip, false);
     }
 
     private void Fall()

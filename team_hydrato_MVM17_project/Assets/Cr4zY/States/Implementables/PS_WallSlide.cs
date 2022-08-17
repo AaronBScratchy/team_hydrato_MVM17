@@ -3,16 +3,21 @@ using UnityEngine.InputSystem;
 
 public class PS_WallSlide : AbstractState
 {
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    {
+        base.Init(_a, _m, _s);
+        name = "Wall Slide";
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/WallSlide");
+    }
     public override void OnStateEnter(PIA actions)
     {
         base.OnStateEnter(actions);
-        name = "Wall Slide";
-        clip = Resources.Load<AnimationClip>("url");
         movement.ToggleGravity();
         movement.WallSlide();
         actions.World.Jump.performed += WallJump;
         movement.landed += OnLand;
         movement.wallLeft += Fall;
+        anim.PlayAnimation(clip, false);
     }
 
     private void OnLand(bool moving)
