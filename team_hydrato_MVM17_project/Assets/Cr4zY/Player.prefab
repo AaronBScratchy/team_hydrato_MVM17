@@ -72,8 +72,8 @@ MonoBehaviour:
   minJumpForce: 4.5
   maxJumpForce: 12.5
   gravityScale: 3
-  wallSlideSpeed: 1
-  wallJumpForce: 6.5
+  wallSlideSpeed: 2.5
+  wallJumpForce: 8.5
 --- !u!114 &1542814189104024298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07b867b6a5294a41ae2feed6e87a1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.5, z: -6}
+  offset: {x: 0, y: 0, z: -8}
 --- !u!114 &-2645015929738457852
 MonoBehaviour:
   m_ObjectHideFlags: 0
