@@ -6971,10 +6971,10 @@ TextureImporter:
       wood_env_224: 21300448
       wood_env_235: 21300470
       wood_env_100: 21300200
-      wood_env_189: 21300378
       wood_env_245: 21300490
-      wood_env_180: 21300360
-      wood_env_69: 21300138
+      wood_env_275: 21300550
+      wood_env_189: 21300378
+      wood_env_4: 21300008
       wood_env_84: 21300168
       wood_env_21: 21300042
       wood_env_19: 21300038
@@ -6985,21 +6985,22 @@ TextureImporter:
       wood_env_205: 21300410
       wood_env_131: 21300262
       wood_env_166: 21300332
+      wood_env_269: 21300538
       wood_env_85: 21300170
       wood_env_144: 21300288
       wood_env_10: 21300020
       wood_env_143: 21300286
       wood_env_257: 21300514
       wood_env_178: 21300356
-      wood_env_275: 21300550
       wood_env_126: 21300252
-      wood_env_148: 21300296
       wood_env_51: 21300102
-      wood_env_201: 21300402
+      wood_env_148: 21300296
       wood_env_103: 21300206
-      wood_env_269: 21300538
       wood_env_117: 21300234
+      wood_env_201: 21300402
+      wood_env_69: 21300138
       wood_env_190: 21300380
+      wood_env_180: 21300360
       wood_env_22: 21300044
       wood_env_241: 21300482
       wood_env_134: 21300268
@@ -7011,7 +7012,6 @@ TextureImporter:
       wood_env_68: 21300136
       wood_env_80: 21300160
       wood_env_23: 21300046
-      wood_env_4: 21300008
       wood_env_276: 21300552
       wood_env_169: 21300338
       wood_env_18: 21300036

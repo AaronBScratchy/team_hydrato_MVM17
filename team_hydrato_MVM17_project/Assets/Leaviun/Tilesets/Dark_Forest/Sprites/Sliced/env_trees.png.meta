@@ -18775,7 +18775,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       env_trees_427: 21300854
-      env_trees_343: 21300686
+      env_trees_760: 21301520
       env_trees_682: 21301364
       env_trees_316: 21300632
       env_trees_603: 21301206
@@ -19154,8 +19154,8 @@ TextureImporter:
       env_trees_642: 21301284
       env_trees_758: 21301516
       env_trees_355: 21300710
-      env_trees_334: 21300668
       env_trees_539: 21301078
+      env_trees_334: 21300668
       env_trees_167: 21300334
       env_trees_580: 21301160
       env_trees_386: 21300772
@@ -19548,10 +19548,10 @@ TextureImporter:
       env_trees_448: 21300896
       env_trees_152: 21300304
       env_trees_714: 21301428
-      env_trees_135: 21300270
-      env_trees_83: 21300166
+      env_trees_343: 21300686
       env_trees_139: 21300278
-      env_trees_760: 21301520
+      env_trees_83: 21300166
+      env_trees_135: 21300270
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

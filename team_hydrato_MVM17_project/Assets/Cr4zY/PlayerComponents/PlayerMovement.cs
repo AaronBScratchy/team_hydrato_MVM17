@@ -55,6 +55,20 @@ public class PlayerMovement : MonoBehaviour
         MoveX = pia.World.Horizontal;
 
     }
+
+    public void LoadStats(PlayerStatsData data)
+    {
+        maxSpeed = data.maxSpeed;
+        maxAirSpeed = data.maxAirSpeed;
+        acceleration = data.acceleration;
+        airAcceleration = data.airAcceleration;
+        minJumpForce = data.minJumpForce;
+        maxJumpForce = data.maxJumpForce;
+        wallJumpForce = data.wallJumpForce;
+        wallSlideSpeed = data.wallSlideSpeed;
+        gravityScale = data.gravityScale;
+        rb.gravityScale = gravityScale;
+    }
     //Per frame reduction of speed
     public void Decelerate()
     {
