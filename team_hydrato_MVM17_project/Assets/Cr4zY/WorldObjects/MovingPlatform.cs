@@ -4,7 +4,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     bool going;
-    [SerializeField] private float minSpeed, maxSpeed;
+    [SerializeField] private float minSpeed, maxSpeed, waitTime;
 
     private Rigidbody2D rb;
 
@@ -14,12 +14,13 @@ public class MovingPlatform : MonoBehaviour
     {
         going = true;
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(MovePlatform());
+        StartMove();
     }
 
-    private void OnDestroy()
+
+    private void StartMove()
     {
-        StopAllCoroutines();
+        StartCoroutine(MovePlatform());
     }
 
     private IEnumerator MovePlatform()
@@ -41,9 +42,11 @@ public class MovingPlatform : MonoBehaviour
 
         rb.MovePosition(endPoint);
 
+        rb.velocity = Vector2.zero;
+
         going = !going;
 
-        StartCoroutine(MovePlatform());
+        Invoke(nameof(StartMove), waitTime);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -80,6 +80,11 @@ public class PlayerStateMachine : MonoBehaviour
 
     }
 
+    public void Respawn()
+    {
+        StateTransition(State.Falling);
+    }
+
     void Update()
     {
         onUpdate?.Invoke();

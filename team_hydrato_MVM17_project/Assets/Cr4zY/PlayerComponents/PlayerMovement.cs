@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -250,6 +251,8 @@ public class PlayerMovement : MonoBehaviour
             wallTouch?.Invoke();
             return;
         }
+
+        Debug.Log("WEE");
     }
 
     //Collision exit logic
@@ -302,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        rb.velocity += localSpace.velocity.x * Vector2.right;
+        //rb.velocity += localSpace.velocity.x * Vector2.right;
     }
 
     public void WallSlide()
@@ -329,12 +332,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void Teleport(Vector2 newPos)
     {
-        rb.MovePosition(newPos);
+
+        StartCoroutine(IEN_Teleport(newPos));
+    }
+
+    private IEnumerator IEN_Teleport(Vector2 newPos)
+    {
+
+        rb.isKinematic = true;
+        RestRB();
+        rb.position = newPos;
+        yield return null;
+        rb.isKinematic = false;
+
     }
 
     public Vector2 FindRelativeToMe(Vector2 offset) {
 
         return rb.position + offset;
 
+    }
+
+    public void Respawn()
+    {
+        rb.velocity = Vector2.zero;
+        currentGround = null;
+        currentWall = null;
+        currentJumpForce = -1;
+        jumpsLeft = 0;
     }
 }
