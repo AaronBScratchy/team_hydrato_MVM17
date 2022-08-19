@@ -18,14 +18,14 @@ public class PlayerStateMachine : MonoBehaviour
 {
     public Action onFixedUpdate, onUpdate;
 
-    AbstractState[] states;
-    AbstractState currentState;
+    AbstractPlayerState[] states;
+    AbstractPlayerState currentState;
     PIA actions;
 
-    public void Init(PlayerAnimation anim, PlayerMovement moves, PlayerCharacterSelector character, PIA pia)
+    public void Init(CustomAnimationController anim, PlayerMovement moves, PlayerCharacterSelector character, PIA pia)
     {
         actions = pia;
-        states = new AbstractState[] {
+        states = new AbstractPlayerState[] {
             ScriptableObject.CreateInstance<PS_Idle>(),
             ScriptableObject.CreateInstance<PS_Running>(),
             ScriptableObject.CreateInstance<PS_Turning>(),
@@ -36,7 +36,7 @@ public class PlayerStateMachine : MonoBehaviour
             ScriptableObject.CreateInstance<PS_WallJump>()
         };
 
-        foreach (AbstractState state in states)
+        foreach (AbstractPlayerState state in states)
         {
             state.Init(anim, moves, this, character);
             state.OnExit += StateTransition;
@@ -48,7 +48,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void RebindStateAnimations(string name)
     {
-        foreach(AbstractState state in states)
+        foreach(AbstractPlayerState state in states)
         {
             state.BindStateAnimation(name);
         }
@@ -56,7 +56,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void StateTransition(State obj)
     {
-        AbstractState targetState = obj switch
+        AbstractPlayerState targetState = obj switch
         {
             State.Idle => states[0],
             State.Running => states[1],

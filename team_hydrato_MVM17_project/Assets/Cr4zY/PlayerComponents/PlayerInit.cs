@@ -13,7 +13,7 @@ public class PlayerInit : MonoBehaviour
 
         inputActions.World.Exit.Enable();
 
-        PlayerAnimation anim = GetComponent<PlayerAnimation>();
+        CustomAnimationController anim = GetComponent<CustomAnimationController>();
         PlayerMovement moves = GetComponent<PlayerMovement>();
         PlayerStateMachine states = GetComponent<PlayerStateMachine>();
         PlayerCamera camera = GetComponent<PlayerCamera>();

@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: II_Idle
   m_EditorClassIdentifier: 
   frames:
-  - _sprite: {fileID: -1718923561, guid: 657de2dbcb077b64d937dbf3f6ebcaca, type: 3}
+  - _sprite: {fileID: 356613771, guid: ebf0cbacd3b729645a1eb5d42937517e, type: 3}
     _time: 0.12
-  - _sprite: {fileID: 1655846609, guid: 657de2dbcb077b64d937dbf3f6ebcaca, type: 3}
+  - _sprite: {fileID: -646657051, guid: ebf0cbacd3b729645a1eb5d42937517e, type: 3}
     _time: 0.12
-  - _sprite: {fileID: -501715474, guid: 657de2dbcb077b64d937dbf3f6ebcaca, type: 3}
+  - _sprite: {fileID: 216343239, guid: ebf0cbacd3b729645a1eb5d42937517e, type: 3}
     _time: 0.12
-  - _sprite: {fileID: 1938190349, guid: 657de2dbcb077b64d937dbf3f6ebcaca, type: 3}
-    _time: 0.12
-  - _sprite: {fileID: -904697070, guid: 657de2dbcb077b64d937dbf3f6ebcaca, type: 3}
-    _time: 0.12
-  - _sprite: {fileID: 590216080, guid: 657de2dbcb077b64d937dbf3f6ebcaca, type: 3}
+  - _sprite: {fileID: -123348378, guid: ebf0cbacd3b729645a1eb5d42937517e, type: 3}
     _time: 0.12

@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
   m_Name: II_JumpSquat
   m_EditorClassIdentifier: 
-  frames: []
+  frames:
+  - _sprite: {fileID: -340202422, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.03
+  - _sprite: {fileID: 528964052, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.03

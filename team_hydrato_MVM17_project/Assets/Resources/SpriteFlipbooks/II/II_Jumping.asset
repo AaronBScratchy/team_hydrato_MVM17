@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
   m_Name: II_Jumping
   m_EditorClassIdentifier: 
-  frames: []
+  frames:
+  - _sprite: {fileID: 1214220812, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.16
+  - _sprite: {fileID: 845377497, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.18
+  - _sprite: {fileID: 1306566518, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.2

@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: II_Running
   m_EditorClassIdentifier: 
   frames:
-  - _sprite: {fileID: 1137324304, guid: 7cb351cdea8398b4c814cef6688a7762, type: 3}
+  - _sprite: {fileID: 842157997, guid: 3578a481271e002438e3463ced97b5bb, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 241548835, guid: 3578a481271e002438e3463ced97b5bb, type: 3}
     _time: 0.16
-  - _sprite: {fileID: -306834560, guid: 7cb351cdea8398b4c814cef6688a7762, type: 3}
-    _time: 0.18
-  - _sprite: {fileID: -1419491981, guid: 7cb351cdea8398b4c814cef6688a7762, type: 3}
-    _time: 0.18
-  - _sprite: {fileID: 734117837, guid: 7cb351cdea8398b4c814cef6688a7762, type: 3}
+  - _sprite: {fileID: 1731075517, guid: 3578a481271e002438e3463ced97b5bb, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -1572862682, guid: 3578a481271e002438e3463ced97b5bb, type: 3}
     _time: 0.16
-  - _sprite: {fileID: 1285832820, guid: 7cb351cdea8398b4c814cef6688a7762, type: 3}
-    _time: 0.2

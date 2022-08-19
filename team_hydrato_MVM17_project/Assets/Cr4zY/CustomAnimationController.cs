@@ -1,11 +1,10 @@
 using System;
-using FMOD;
 using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
 
 //Class to control playing animation clips, utilises monobehaviour invoke calls to update sprite
-public class PlayerAnimation : MonoBehaviour
+public class CustomAnimationController : MonoBehaviour
 {
     //Queue of frames
     private Queue<SpriteAnimationFrame> playedSprites = new();

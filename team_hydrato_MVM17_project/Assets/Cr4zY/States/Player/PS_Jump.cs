@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-internal class PS_Jump : AbstractUpdatingState
+internal class PS_Jump : AbstractUpdatingPS
 {
-    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
+    public override void Init(CustomAnimationController _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
         name = "Jumping";
         base.Init(_a, _m, _s, _c);

@@ -19,7 +19,7 @@ MonoBehaviour:
     maxAirSpeed: 8
     airAcceleration: 24
     minJumpForce: 4.5
-    maxJumpForce: 12.5
+    maxJumpForce: 14
     wallJumpForce: 8.5
     wallSlideSpeed: 2.5
     gravityScale: 3
@@ -29,7 +29,7 @@ MonoBehaviour:
     maxAirSpeed: 6
     airAcceleration: 18
     minJumpForce: 3
-    maxJumpForce: 10
+    maxJumpForce: 12
     wallJumpForce: 7
     wallSlideSpeed: 3.5
     gravityScale: 3

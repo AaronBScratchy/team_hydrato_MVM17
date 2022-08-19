@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-internal class PS_Jumpsquat : AbstractState
+internal class PS_Jumpsquat : AbstractPlayerState
 {
     float start, release;
-    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
+    public override void Init(CustomAnimationController _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
         name = "JumpSquat";
         base.Init(_a, _m, _s, _c);

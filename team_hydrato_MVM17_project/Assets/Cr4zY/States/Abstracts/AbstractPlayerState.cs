@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
 
-public abstract class AbstractState : ScriptableObject
+public abstract class AbstractPlayerState : ScriptableObject
 {
     protected AnimationClip clip;
-    protected PlayerAnimation anim;
+    protected CustomAnimationController anim;
     protected PlayerMovement movement;
     protected PlayerStateMachine stateMachine;
     protected PlayerCharacterSelector character;
     public Action<State> OnExit;
 
     //Initialiser references relevant monobehaviour components
-    public virtual void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
+    public virtual void Init(CustomAnimationController _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
         anim = _a;
         movement = _m;
