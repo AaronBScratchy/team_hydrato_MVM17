@@ -7,14 +7,16 @@ public abstract class AbstractState : ScriptableObject
     protected PlayerAnimation anim;
     protected PlayerMovement movement;
     protected PlayerStateMachine stateMachine;
+    protected PlayerCharacterSelector character;
     public Action<State> OnExit;
 
     //Initialiser references relevant monobehaviour components
-    public virtual void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    public virtual void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
         anim = _a;
         movement = _m;
         stateMachine = _s;
+        character = _c;
     }
 
     //Behaviour to run when the state starts
@@ -22,8 +24,13 @@ public abstract class AbstractState : ScriptableObject
     {
         //Debug.Log(name);
     }
-    
+
     //Behaviour to run when the state stops running
     public abstract void OnStateExit(PIA actions);
+
+    public void BindStateAnimation(string name)
+    {
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/" + name + "/" + name);
+    }
 
 }

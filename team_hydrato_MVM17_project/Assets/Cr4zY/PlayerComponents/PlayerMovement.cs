@@ -324,6 +324,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallDrop()
     {
-        rb.velocity = new Vector2(currentWall.ClosestPoint(rb.position).x - rb.position.x < 0 ? 1 : -1, 0) * 0.4f * wallJumpForce;
+        rb.velocity = 0.4f * wallJumpForce * new Vector2(currentWall.ClosestPoint(rb.position).x - rb.position.x < 0 ? 1 : -1, 0);
+    }
+
+    public void Teleport(Vector2 newPos)
+    {
+        rb.MovePosition(newPos);
+    }
+
+    public Vector2 FindRelativeToMe(Vector2 offset) {
+
+        return rb.position + offset;
+
     }
 }

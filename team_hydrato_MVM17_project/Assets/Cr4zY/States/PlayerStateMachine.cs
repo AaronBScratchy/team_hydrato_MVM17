@@ -22,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     AbstractState currentState;
     PIA actions;
 
-    public void Init(PlayerAnimation anim, PlayerMovement moves, PIA pia)
+    public void Init(PlayerAnimation anim, PlayerMovement moves, PlayerCharacterSelector character, PIA pia)
     {
         actions = pia;
         states = new AbstractState[] {
@@ -38,7 +38,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         foreach (AbstractState state in states)
         {
-            state.Init(anim, moves, this);
+            state.Init(anim, moves, this, character);
             state.OnExit += StateTransition;
         }
 
@@ -46,6 +46,13 @@ public class PlayerStateMachine : MonoBehaviour
 
     }
 
+    public void RebindStateAnimations(string name)
+    {
+        foreach(AbstractState state in states)
+        {
+            state.BindStateAnimation(name);
+        }
+    }
 
     private void StateTransition(State obj)
     {

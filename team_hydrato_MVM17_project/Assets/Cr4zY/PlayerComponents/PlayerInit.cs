@@ -8,6 +8,8 @@ public class PlayerInit : MonoBehaviour
         inputActions.World.Jump.Enable();
         inputActions.World.Horizontal.Enable();
         inputActions.World.Crouch.Enable();
+        inputActions.World.CharacterSwitchFwd.Enable();
+        inputActions.World.CharacterSwitchBack.Enable();
 
         inputActions.World.Exit.Enable();
 
@@ -15,10 +17,12 @@ public class PlayerInit : MonoBehaviour
         PlayerMovement moves = GetComponent<PlayerMovement>();
         PlayerStateMachine states = GetComponent<PlayerStateMachine>();
         PlayerCamera camera = GetComponent<PlayerCamera>();
+        PlayerCharacterSelector characterSelector = GetComponent<PlayerCharacterSelector>();
 
         anim.Init();
         moves.Init(inputActions);
-        states.Init(anim,moves,inputActions);
+        characterSelector.Init();
+        states.Init(anim,moves,characterSelector,inputActions);
         camera.Init(transform);
 
         inputActions.World.Exit.performed += camera.QuitGame;

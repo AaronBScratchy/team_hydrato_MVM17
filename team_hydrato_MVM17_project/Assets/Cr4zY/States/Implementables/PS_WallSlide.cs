@@ -3,11 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PS_WallSlide : AbstractState
 {
-    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
-        base.Init(_a, _m, _s);
-        name = "Wall Slide";
-        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/WallSlide");
+        base.Init(_a, _m, _s, _c);
+        name = "WallSlide";
     }
     public override void OnStateEnter(PIA actions)
     {

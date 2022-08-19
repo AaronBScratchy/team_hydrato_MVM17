@@ -4,11 +4,10 @@ using UnityEngine;
 
 internal class PS_WallJump : AbstractUpdatingState
 {
-    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
-        base.Init(_a, _m, _s);
-        name = "Wall Jump";
-        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/WallJump");
+        base.Init(_a, _m, _s, _c);
+        name = "WallJump";
     }
     public override void OnStateEnter(PIA actions)
     {

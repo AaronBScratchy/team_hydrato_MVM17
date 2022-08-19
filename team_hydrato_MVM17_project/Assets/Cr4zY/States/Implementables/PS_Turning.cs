@@ -2,12 +2,10 @@
 using UnityEngine.InputSystem;
 internal class PS_Turning : AbstractUpdatingState
 {
-    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
-        base.Init(_a, _m, _s);
-
+        base.Init(_a, _m, _s, _c);
         name = "Turning";
-        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/Idle");
     }
 
     public override void OnStateEnter(PIA actions)

@@ -5,12 +5,11 @@ using UnityEngine.InputSystem;
 internal class PS_Jumpsquat : AbstractState
 {
     float start, release;
-    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s)
+    public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
-        base.Init(_a, _m, _s);
+        base.Init(_a, _m, _s, _c);
 
-        name = "Jump squat";
-        clip = Resources.Load<AnimationClip>("AnimationClips/Player/Horn/JumpSquat");
+        name = "JumpSquat";
     }
 
     public override void OnStateEnter(PIA actions)
@@ -36,7 +35,7 @@ internal class PS_Jumpsquat : AbstractState
 
     private void TakeOff()
     {
-        movement.CacheJump(release-start, Time.time-start);
+        movement.CacheJump(release - start, Time.time - start);
 
         OnExit?.Invoke(State.Jumping);
     }
