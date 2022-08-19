@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5db0acb36ca90bb4293a1d74ba2a7d4a, type: 3}
-  m_Name: Jump
+  m_Name: Turning
   m_EditorClassIdentifier: 
-  sound: {fileID: 11400000, guid: 4b2a1ec8f926e9e47abc91f62ac31e24, type: 2}
-  flipbook: {fileID: 11400000, guid: b677dc9374ded46469ade7431122347b, type: 2}
-  m_muted: 0
+  sound: {fileID: 0}
+  flipbook: {fileID: 11400000, guid: 88b076fcefba2ef4fbe97b3ba2fcc3f4, type: 2}
+  m_muted: 1

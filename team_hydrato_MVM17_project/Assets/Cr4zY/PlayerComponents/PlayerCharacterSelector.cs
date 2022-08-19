@@ -4,7 +4,7 @@ public class PlayerCharacterSelector : MonoBehaviour
 
     private Character current;
 
-    public string CharacterName { get { return nameof(current); } }
+    public string CharacterName { get { return current.ToString(); } }
 
     [SerializeField] private PlayerStats stats;
 

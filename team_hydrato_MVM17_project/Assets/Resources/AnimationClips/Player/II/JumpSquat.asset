@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: JumpSquat
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  flipbook: {fileID: 0}
-  m_muted: 0
+  flipbook: {fileID: 11400000, guid: 9502df4170ccde74596770b9cda2569b, type: 2}
+  m_muted: 1

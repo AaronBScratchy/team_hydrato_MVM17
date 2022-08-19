@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5db0acb36ca90bb4293a1d74ba2a7d4a, type: 3}
-  m_Name: WallSlide
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: II_WallSlide
   m_EditorClassIdentifier: 
-  sound: {fileID: 0}
-  flipbook: {fileID: 11400000, guid: 039646cfb406caa47a119d7552f81d80, type: 2}
-  m_muted: 1
+  frames: []

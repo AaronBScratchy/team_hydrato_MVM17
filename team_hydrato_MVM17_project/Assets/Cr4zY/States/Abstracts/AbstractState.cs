@@ -17,6 +17,8 @@ public abstract class AbstractState : ScriptableObject
         movement = _m;
         stateMachine = _s;
         character = _c;
+
+        BindStateAnimation(character.CharacterName);
     }
 
     //Behaviour to run when the state starts
@@ -28,9 +30,9 @@ public abstract class AbstractState : ScriptableObject
     //Behaviour to run when the state stops running
     public abstract void OnStateExit(PIA actions);
 
-    public void BindStateAnimation(string name)
+    public void BindStateAnimation(string currentChar)
     {
-        clip = Resources.Load<AnimationClip>("AnimationClips/Player/" + name + "/" + name);
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/" + currentChar + "/" + name);
     }
 
 }

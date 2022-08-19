@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db0acb36ca90bb4293a1d74ba2a7d4a, type: 3}
   m_Name: Running
   m_EditorClassIdentifier: 
-  sound: {fileID: 0}
-  flipbook: {fileID: 0}
+  sound: {fileID: 11400000, guid: 42144688562750940a367f888c2fdfe9, type: 2}
+  flipbook: {fileID: 11400000, guid: ea5c276695b965e44a75279c0cc6c7bf, type: 2}
   m_muted: 0

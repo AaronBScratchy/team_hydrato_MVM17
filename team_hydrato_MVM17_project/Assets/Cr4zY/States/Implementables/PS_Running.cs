@@ -4,8 +4,8 @@ internal class PS_Running : AbstractUpdatingState
 {
     public override void Init(PlayerAnimation _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
     {
-        base.Init(_a, _m, _s, _c);
         name = "Running";
+        base.Init(_a, _m, _s, _c);
     }
     public override void OnStateEnter(PIA actions)
     {

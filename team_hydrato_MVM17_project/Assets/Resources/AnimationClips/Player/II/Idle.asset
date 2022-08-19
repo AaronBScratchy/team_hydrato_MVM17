@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Idle
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  flipbook: {fileID: 0}
-  m_muted: 0
+  flipbook: {fileID: 11400000, guid: c499c7bf142dc6e41bfaf4699338fecc, type: 2}
+  m_muted: 1
