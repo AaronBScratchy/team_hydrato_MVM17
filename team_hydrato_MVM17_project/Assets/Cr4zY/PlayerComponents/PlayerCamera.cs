@@ -11,7 +11,10 @@ internal class PlayerCamera : MonoBehaviour
         cam = new GameObject("Camera").AddComponent<Camera>().transform;
         player = _p;
 
+        cam.GetComponent<Camera>().orthographic = true;
+
         cam.position = player.position + offset;
+
     }
 
     //Camera moves towards position of player + offset, lerp allows for smoothed delay
