@@ -213,8 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07b867b6a5294a41ae2feed6e87a1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 0}
-  offset: {x: 0, y: 3.3, z: -10}
+  offset: {x: 0, y: 0.5, z: -10}
 --- !u!114 &-2645015929738457852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,14 +231,14 @@ MonoBehaviour:
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
-  m_SelfShadows: 0
+  m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.335593, y: -0.5, z: 0}
-  - {x: -0.13522196, y: 0.49657482, z: 0}
-  - {x: 0.10439566, y: 0.49486226, z: 0}
-  - {x: 0.36470675, y: -0.5, z: 0}
-  m_ShapePathHash: 1572715801
+  - {x: -0.17339176, y: -0.44839054, z: 0}
+  - {x: -0.076239765, y: 0.4597109, z: 0}
+  - {x: 0.07490453, y: 0.46537113, z: 0}
+  - {x: 0.22462395, y: -0.44839054, z: 0}
+  m_ShapePathHash: -78418505
   m_Mesh: {fileID: 0}
   m_InstanceId: 58026
 --- !u!114 &1403608633636289713
