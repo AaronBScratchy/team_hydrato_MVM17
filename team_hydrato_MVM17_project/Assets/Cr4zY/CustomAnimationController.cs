@@ -9,6 +9,8 @@ public class CustomAnimationController : MonoBehaviour
     //Queue of frames
     private Queue<SpriteAnimationFrame> playedSprites = new();
     private Queue<SpriteAnimationFrame> waitingSprites;
+
+    //Queue for sound
     private Queue<SoundEvent> playedSounds = new();
     private Queue<SoundEvent> queuedSounds;
 
@@ -54,6 +56,7 @@ public class CustomAnimationController : MonoBehaviour
 
         //Invoke next frame call
         Invoke(nameof(FrameShift), currentFrame.Time);
+
         if (muted)
         {
             return;
