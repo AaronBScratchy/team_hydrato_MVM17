@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 internal class PS_Idle : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
     {
         name = "Idle";
         base.Init(_a, _m, _s, _c);
@@ -54,21 +54,11 @@ internal class PS_Idle : AbstractUpdatingPS
     }
     private void ChangeToNext(InputAction.CallbackContext obj)
     {
-        character.Switch(true);
-        NewCharacter();
+        stateMachine.ChangeCharacterWish(true);
     }
     
     private void ChangeToPrev(InputAction.CallbackContext obj)
     {
-        character.Switch(false);
-        NewCharacter();
-    }
-
-    private void NewCharacter()
-    {
-        movement.LoadStats(character.GetCurrentStats());
-        stateMachine.RebindStateAnimations(character.CharacterName);
-        movement.Teleport(movement.FindRelativeToMe(Vector2.up * 0.25f));
-        OnExit?.Invoke(State.Falling);  
+        stateMachine.ChangeCharacterWish(false);
     }
 }

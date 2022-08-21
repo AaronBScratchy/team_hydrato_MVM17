@@ -2,16 +2,16 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class PlayerStats : ScriptableObject
+public class CharacterStats : ScriptableObject
 {
-    [SerializeField] private PlayerStatsData[] stats;
+    [SerializeField] private CharacterStatsData[] stats;
 
-    public PlayerStatsData GetStats(int index)
+    public CharacterStatsData GetStats(int index)
     {
         return stats[index];
     }
 
-    public PlayerStatsData GetStats(Character charac)
+    public CharacterStatsData GetStats(Character charac)
     {
         return stats[charac switch
         {
@@ -26,7 +26,7 @@ public class PlayerStats : ScriptableObject
 }
 
 [Serializable]
-public struct PlayerStatsData
+public struct CharacterStatsData
 {
     [SerializeField] private Character character;
 

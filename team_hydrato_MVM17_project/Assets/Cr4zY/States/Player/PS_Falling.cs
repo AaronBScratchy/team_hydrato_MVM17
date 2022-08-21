@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 internal class PS_Falling : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
     {
         name = "Falling";
         base.Init(_a, _m, _s, _c);

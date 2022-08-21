@@ -6,7 +6,7 @@ public class PlayerCharacterSelector : MonoBehaviour
 
     public string CharacterName { get { return current.ToString(); } }
 
-    [SerializeField] private PlayerStats stats;
+    [SerializeField] private CharacterStats stats;
 
     public void Init()
     {
@@ -25,7 +25,7 @@ public class PlayerCharacterSelector : MonoBehaviour
         };
     }
 
-    public PlayerStatsData GetCurrentStats()
+    public CharacterStatsData GetCurrentStats()
     {
         return stats.GetStats(current);
     }

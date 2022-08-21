@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class PlayerCheckPointer : MonoBehaviour
+public class CharacterCheckpointer : MonoBehaviour
 {
-    private PlayerMovement moves;
+    private CharacterMovement moves;
     private Vector2 checkPoint;
 
     public Action onDeath;
-    public void Init(PlayerMovement _m)
+    public void Init(CharacterMovement _m)
     {
         moves = _m;
         checkPoint = GetComponent<Rigidbody2D>().position;

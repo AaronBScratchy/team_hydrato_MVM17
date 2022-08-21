@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 internal class PlayerCamera : MonoBehaviour
 {
@@ -6,12 +7,12 @@ internal class PlayerCamera : MonoBehaviour
     [SerializeField] private Vector3 offset;
     private readonly float camSpeed = 15;
 
-    internal void Init(Transform _p)
+    internal void Init()
     {
         cam = new GameObject("Camera").AddComponent<Camera>().transform;
-        player = _p;
 
         cam.GetComponent<Camera>().orthographic = true;
+        cam.gameObject.AddComponent<FMODUnity.StudioListener>();
 
         cam.position = player.position + offset;
 
@@ -25,12 +26,19 @@ internal class PlayerCamera : MonoBehaviour
 
     }
 
+
+
     public void QuitGame(InputAction.CallbackContext obj)
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    internal void Focus(Transform newTarget)
+    {
+        player = newTarget;
     }
 }
 

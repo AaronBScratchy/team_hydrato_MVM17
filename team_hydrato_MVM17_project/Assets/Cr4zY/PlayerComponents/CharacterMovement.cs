@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 //Player physics and movement controller
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     //Rigidbody reference
     private Rigidbody2D rb, localSpace;
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void LoadStats(PlayerStatsData data)
+    public void LoadStats(CharacterStatsData data)
     {
         maxSpeed = data.maxSpeed;
         maxAirSpeed = data.maxAirSpeed;
@@ -310,7 +310,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallSlide()
     {
-        Debug.Log(wallSlideSpeed);
         rb.velocity = Vector2.down * wallSlideSpeed;
         _posX = currentWall.ClosestPoint(rb.position).x - rb.position.x < 0;
     }

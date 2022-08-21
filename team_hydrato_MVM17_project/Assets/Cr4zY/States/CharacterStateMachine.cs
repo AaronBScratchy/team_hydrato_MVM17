@@ -14,16 +14,20 @@ public enum State
     WallJump
 }
 
-public class PlayerStateMachine : MonoBehaviour
+public class CharacterStateMachine : MonoBehaviour
 {
     public Action onFixedUpdate, onUpdate;
+    public Action<Character> onChangeWish;
+
+    private Character _c;
 
     AbstractPlayerState[] states;
     AbstractPlayerState currentState;
     PIA actions;
 
-    public void Init(CustomAnimationController anim, PlayerMovement moves, PlayerCharacterSelector character, PIA pia)
+    public void Init(CustomAnimationController anim, CharacterMovement moves, Character character, PIA pia)
     {
+        _c = character;
         actions = pia;
         states = new AbstractPlayerState[] {
             ScriptableObject.CreateInstance<PS_Idle>(),
@@ -44,11 +48,13 @@ public class PlayerStateMachine : MonoBehaviour
 
         StateTransition(State.Falling);
 
+        PauseMachine();
+
     }
 
     public void RebindStateAnimations(string name)
     {
-        foreach(AbstractPlayerState state in states)
+        foreach (AbstractPlayerState state in states)
         {
             state.BindStateAnimation(name);
         }
@@ -78,6 +84,41 @@ public class PlayerStateMachine : MonoBehaviour
         currentState = targetState;
         currentState.OnStateEnter(actions);
 
+    }
+
+    public void ChangeCharacterWish(bool next)
+    {
+        onChangeWish?.Invoke(_c switch
+        {
+            Character.BrokenHorn => next ? Character.II : Character.II,
+            Character.II => next ? Character.BrokenHorn : Character.BrokenHorn,
+            Character.III => Character.BrokenHorn,
+            Character.IV => Character.BrokenHorn,
+            _ => Character.BrokenHorn
+        });
+        onChangeWish = null;
+        PauseMachine();
+    }
+
+    public void PauseMachine()
+    {
+        if (currentState == null)
+        {
+            return;
+        }
+        currentState.OnStateExit(actions);
+        gameObject.SetActive(false);
+    }
+
+    public void ResumeCurrentState()
+    {
+        gameObject.SetActive(true);
+        if (currentState != null)
+        {
+            currentState.OnStateEnter(actions);
+            return;
+        }
+        StateTransition(State.Falling);
     }
 
     public void Respawn()

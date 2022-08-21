@@ -50,7 +50,7 @@ public class MovingPlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent<PlayerMovement>(out PlayerMovement moves))
+        if (collision.collider.TryGetComponent<CharacterMovement>(out CharacterMovement moves))
         {
             moves.SetLocalSpace(rb);
         }

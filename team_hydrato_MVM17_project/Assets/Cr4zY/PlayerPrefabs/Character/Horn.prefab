@@ -17,12 +17,10 @@ GameObject:
   - component: {fileID: 8078296565579580978}
   - component: {fileID: 4104116663918738932}
   - component: {fileID: -1731734659753279212}
-  - component: {fileID: -6310172888283819130}
   - component: {fileID: -2645015929738457852}
-  - component: {fileID: 1403608633636289713}
-  - component: {fileID: 182216001293659938}
+  - component: {fileID: 2307997817856756633}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Horn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d51801a0c9f8b4dbb8500c0c283caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: 0
 --- !u!114 &3121514570807525276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,19 +200,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &-6310172888283819130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4766308681852571300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d07b867b6a5294a41ae2feed6e87a1a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.5, z: -10}
 --- !u!114 &-2645015929738457852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,17 +217,17 @@ MonoBehaviour:
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
-  m_SelfShadows: 1
+  m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.17339176, y: -0.44839054, z: 0}
-  - {x: -0.076239765, y: 0.4597109, z: 0}
-  - {x: 0.07490453, y: 0.46537113, z: 0}
-  - {x: 0.22462395, y: -0.44839054, z: 0}
-  m_ShapePathHash: -78418505
+  - {x: -0.335593, y: -0.5, z: 0}
+  - {x: -0.13522196, y: 0.49657482, z: 0}
+  - {x: 0.10439566, y: 0.49486226, z: 0}
+  - {x: 0.36470675, y: -0.5, z: 0}
+  m_ShapePathHash: 1572715801
   m_Mesh: {fileID: 0}
-  m_InstanceId: 58026
---- !u!114 &1403608633636289713
+  m_InstanceId: 60048
+--- !u!114 &2307997817856756633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,19 +236,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4766308681852571300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19992bf91384b8746bbb1f2e08563347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 7ab9908ca565fd3419d79c6633984874, type: 2}
---- !u!114 &182216001293659938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4766308681852571300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8ec1c09c41d004bba405e139fb65fa, type: 3}
+  m_Script: {fileID: 11500000, guid: f5845191a2967b942aef90022e8b79ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

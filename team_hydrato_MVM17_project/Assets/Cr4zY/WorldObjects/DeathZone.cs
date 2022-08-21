@@ -14,7 +14,7 @@ public class DeathZone : MonoBehaviour
             return;
         }
 
-        if(collision.TryGetComponent<PlayerCheckPointer>(out PlayerCheckPointer player))
+        if(collision.TryGetComponent<CharacterCheckpointer>(out CharacterCheckpointer player))
         {
             player.onDeath?.Invoke();
         }

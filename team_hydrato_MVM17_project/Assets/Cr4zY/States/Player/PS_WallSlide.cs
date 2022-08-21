@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PS_WallSlide : AbstractPlayerState
 {
-    public override void Init(CustomAnimationController _a, PlayerMovement _m, PlayerStateMachine _s, PlayerCharacterSelector _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
     {
         name = "WallSlide";
         base.Init(_a, _m, _s, _c);
