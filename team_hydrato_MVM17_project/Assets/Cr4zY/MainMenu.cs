@@ -5,12 +5,12 @@ public class MainMenu : MonoBehaviour
 {
     public void LoadLeaviun()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void LoadCr4zY()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame()
