@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-internal class PS_Jumpsquat : AbstractPlayerState
+public class PS_Jumpsquat : AbstractPlayerState
 {
     float start, release;
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         name = "JumpSquat";
         base.Init(_a, _m, _s, _c);
@@ -15,7 +15,6 @@ internal class PS_Jumpsquat : AbstractPlayerState
     {
         start = Time.time;
         release = start;
-        base.OnStateEnter(actions);
         anim.PlayAnimation(clip, false);
         anim.animOver += TakeOff;
         actions.World.Jump.canceled += OnJumpRelease;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Turning
   m_EditorClassIdentifier: 
   sound: {fileID: 0}
-  flipbook: {fileID: 11400000, guid: 88b076fcefba2ef4fbe97b3ba2fcc3f4, type: 2}
+  flipbook: {fileID: 11400000, guid: 4d3e95a675c0e04448f93dfe9a8201ba, type: 2}
   m_muted: 1

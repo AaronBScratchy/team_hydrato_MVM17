@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-internal class PS_Turning : AbstractUpdatingPS
+public class PS_Turning : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         name = "Turning";
         base.Init(_a, _m, _s, _c);
@@ -11,10 +11,9 @@ internal class PS_Turning : AbstractUpdatingPS
     public override void OnStateEnter(PIA actions)
     {
         base.OnStateEnter(actions);
+        anim.PlayAnimation(clip, false);
 
         movement.Turn();
-        anim.Flip();
-
         movement.turnComplete += Run;
         movement.falling += Fall;
         actions.World.Jump.performed += Jump;

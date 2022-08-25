@@ -1,18 +1,16 @@
-﻿using System;
-
+﻿
 //Template class for State machine states that need to be updated on a fixed or per-frame basis
 //Fixed and per-frame could be seperated but i'm lazy xD
-internal abstract class AbstractUpdatingPS : AbstractPlayerState
+public abstract class AbstractUpdatingPS : AbstractPlayerState
 {
     //Initialises the state
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         base.Init(_a, _m, _s, _c);
     }
 
     public override void OnStateEnter(PIA actions)
     {
-        base.OnStateEnter(actions);
         stateMachine.onFixedUpdate += OnFixedUpdate;
         stateMachine.onUpdate += OnUpdate;
     }

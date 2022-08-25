@@ -16,7 +16,7 @@ public class CharacterStats : ScriptableObject
         return stats[charac switch
         {
             Character.BrokenHorn => 0,
-            Character.II => 1,
+            Character.Scythe => 1,
             Character.III => 2,
             Character.IV => 3,
             _ => 0
@@ -45,9 +45,10 @@ public struct CharacterStatsData
 
 public enum Character
 {
+    None,
     BrokenHorn,
-    II,
+    Scythe,
     III,
-    IV
+    IV,
 }
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: Scythe_Jump
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: 1381527372, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.16
+  - _sprite: {fileID: -810415549, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.18
+  - _sprite: {fileID: -31920522, guid: c886a9ec742689746adf67bba39513c4, type: 3}
+    _time: 0.2

@@ -37,6 +37,15 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""17bc01fd-d4e8-4b63-82a6-e6b908d33e7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Vertical"",
                     ""type"": ""Value"",
                     ""id"": ""3d81d085-87d8-4a89-9cdf-de232ea3da8f"",
@@ -44,15 +53,6 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""bd7ff4e1-6884-488d-a3fd-239e6676fa8b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Crouch"",
@@ -215,61 +215,6 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""978511dc-c13b-4c09-9f46-572e3e0c1ca1"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""04066185-c582-4d6c-8133-f7a3ab9fd77a"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7bd6b4e1-b3fc-4c0a-87cc-1fb82c20a651"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""012d897d-3932-457f-b275-92ef4886e52c"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""62f49101-04d6-4e9d-b86f-adc35a7887ea"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9ce61efb-05fd-4761-8d6e-60af219d68dd"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
@@ -344,6 +289,245 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""action"": ""CharacterSwitchBack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""546a8663-2cdd-4f5a-8b88-04c2d794ce5c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b79bf2d5-9ad4-4ca8-b828-991b50802eed"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bc04d06-28a7-408b-a438-acf1cbf6851c"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""601b9f64-853d-4929-85cb-0940b3e38117"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebcc07db-a2ef-49f9-88a2-4b50418cf9e5"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""BrokenHorn"",
+            ""id"": ""9d00d2b6-cb15-4270-a9fc-eaade6ef4f2f"",
+            ""actions"": [
+                {
+                    ""name"": ""HornExclusive"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e8224d9-60f3-42cc-bf24-9fad5857941e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a6b80f5-c9d4-4c4a-ab34-f8e66926bae9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""09bfe964-d384-4dee-8c05-685b188d1d77"",
+                    ""path"": ""<Keyboard>/comma"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HornExclusive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bfd7129-a9fd-47c3-8550-540173ebade3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c79b521f-6dd8-4216-9e52-fb85420cb1ee"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d44d41a-7b08-47b4-86a9-433326ac997a"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0eff897f-9a98-4155-b383-41be14648e88"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fafe5c9-a74d-4de2-b25f-d72a90823ea7"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Scythe"",
+            ""id"": ""db3388b7-dc1a-4554-a723-eb00efb4b1ac"",
+            ""actions"": [
+                {
+                    ""name"": ""Ability1"",
+                    ""type"": ""Button"",
+                    ""id"": ""6942f9d5-f4dc-4289-b1a0-a9b543daf142"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""929627db-64a7-4f4a-b5e5-feafeec2779b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8dd96f13-10fb-4196-8d93-41327fed8f68"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e585f6cd-1af3-4e81-9ba7-15ee5cf3e658"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73fb611f-56c0-4263-82f4-0fc71ac9d658"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""491c24ac-9dcf-4f1e-bbda-910135aa6981"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50582490-14b7-4055-bc61-0ec770932ddd"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e9d7124-e7be-4c2f-8f47-bae5052d34d0"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -353,12 +537,20 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         // World
         m_World = asset.FindActionMap("World", throwIfNotFound: true);
         m_World_Horizontal = m_World.FindAction("Horizontal", throwIfNotFound: true);
-        m_World_Vertical = m_World.FindAction("Vertical", throwIfNotFound: true);
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
+        m_World_Vertical = m_World.FindAction("Vertical", throwIfNotFound: true);
         m_World_Crouch = m_World.FindAction("Crouch", throwIfNotFound: true);
         m_World_Exit = m_World.FindAction("Exit", throwIfNotFound: true);
         m_World_CharacterSwitchFwd = m_World.FindAction("CharacterSwitchFwd", throwIfNotFound: true);
         m_World_CharacterSwitchBack = m_World.FindAction("CharacterSwitchBack", throwIfNotFound: true);
+        // BrokenHorn
+        m_BrokenHorn = asset.FindActionMap("BrokenHorn", throwIfNotFound: true);
+        m_BrokenHorn_HornExclusive = m_BrokenHorn.FindAction("HornExclusive", throwIfNotFound: true);
+        m_BrokenHorn_Jump = m_BrokenHorn.FindAction("Jump", throwIfNotFound: true);
+        // Scythe
+        m_Scythe = asset.FindActionMap("Scythe", throwIfNotFound: true);
+        m_Scythe_Ability1 = m_Scythe.FindAction("Ability1", throwIfNotFound: true);
+        m_Scythe_Jump = m_Scythe.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -419,8 +611,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_World;
     private IWorldActions m_WorldActionsCallbackInterface;
     private readonly InputAction m_World_Horizontal;
-    private readonly InputAction m_World_Vertical;
     private readonly InputAction m_World_Jump;
+    private readonly InputAction m_World_Vertical;
     private readonly InputAction m_World_Crouch;
     private readonly InputAction m_World_Exit;
     private readonly InputAction m_World_CharacterSwitchFwd;
@@ -430,8 +622,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         private @PIA m_Wrapper;
         public WorldActions(@PIA wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_World_Horizontal;
-        public InputAction @Vertical => m_Wrapper.m_World_Vertical;
         public InputAction @Jump => m_Wrapper.m_World_Jump;
+        public InputAction @Vertical => m_Wrapper.m_World_Vertical;
         public InputAction @Crouch => m_Wrapper.m_World_Crouch;
         public InputAction @Exit => m_Wrapper.m_World_Exit;
         public InputAction @CharacterSwitchFwd => m_Wrapper.m_World_CharacterSwitchFwd;
@@ -448,12 +640,12 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @Horizontal.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnHorizontal;
                 @Horizontal.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnHorizontal;
                 @Horizontal.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnHorizontal;
-                @Vertical.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnVertical;
-                @Vertical.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnVertical;
-                @Vertical.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnVertical;
                 @Jump.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnJump;
+                @Vertical.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnVertical;
+                @Vertical.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnVertical;
+                @Vertical.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnVertical;
                 @Crouch.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnCrouch;
@@ -473,12 +665,12 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @Horizontal.started += instance.OnHorizontal;
                 @Horizontal.performed += instance.OnHorizontal;
                 @Horizontal.canceled += instance.OnHorizontal;
-                @Vertical.started += instance.OnVertical;
-                @Vertical.performed += instance.OnVertical;
-                @Vertical.canceled += instance.OnVertical;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Vertical.started += instance.OnVertical;
+                @Vertical.performed += instance.OnVertical;
+                @Vertical.canceled += instance.OnVertical;
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
@@ -495,14 +687,106 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         }
     }
     public WorldActions @World => new WorldActions(this);
+
+    // BrokenHorn
+    private readonly InputActionMap m_BrokenHorn;
+    private IBrokenHornActions m_BrokenHornActionsCallbackInterface;
+    private readonly InputAction m_BrokenHorn_HornExclusive;
+    private readonly InputAction m_BrokenHorn_Jump;
+    public struct BrokenHornActions
+    {
+        private @PIA m_Wrapper;
+        public BrokenHornActions(@PIA wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HornExclusive => m_Wrapper.m_BrokenHorn_HornExclusive;
+        public InputAction @Jump => m_Wrapper.m_BrokenHorn_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_BrokenHorn; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BrokenHornActions set) { return set.Get(); }
+        public void SetCallbacks(IBrokenHornActions instance)
+        {
+            if (m_Wrapper.m_BrokenHornActionsCallbackInterface != null)
+            {
+                @HornExclusive.started -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnHornExclusive;
+                @HornExclusive.performed -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnHornExclusive;
+                @HornExclusive.canceled -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnHornExclusive;
+                @Jump.started -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnJump;
+            }
+            m_Wrapper.m_BrokenHornActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @HornExclusive.started += instance.OnHornExclusive;
+                @HornExclusive.performed += instance.OnHornExclusive;
+                @HornExclusive.canceled += instance.OnHornExclusive;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+            }
+        }
+    }
+    public BrokenHornActions @BrokenHorn => new BrokenHornActions(this);
+
+    // Scythe
+    private readonly InputActionMap m_Scythe;
+    private IScytheActions m_ScytheActionsCallbackInterface;
+    private readonly InputAction m_Scythe_Ability1;
+    private readonly InputAction m_Scythe_Jump;
+    public struct ScytheActions
+    {
+        private @PIA m_Wrapper;
+        public ScytheActions(@PIA wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Ability1 => m_Wrapper.m_Scythe_Ability1;
+        public InputAction @Jump => m_Wrapper.m_Scythe_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_Scythe; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ScytheActions set) { return set.Get(); }
+        public void SetCallbacks(IScytheActions instance)
+        {
+            if (m_Wrapper.m_ScytheActionsCallbackInterface != null)
+            {
+                @Ability1.started -= m_Wrapper.m_ScytheActionsCallbackInterface.OnAbility1;
+                @Ability1.performed -= m_Wrapper.m_ScytheActionsCallbackInterface.OnAbility1;
+                @Ability1.canceled -= m_Wrapper.m_ScytheActionsCallbackInterface.OnAbility1;
+                @Jump.started -= m_Wrapper.m_ScytheActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_ScytheActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_ScytheActionsCallbackInterface.OnJump;
+            }
+            m_Wrapper.m_ScytheActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Ability1.started += instance.OnAbility1;
+                @Ability1.performed += instance.OnAbility1;
+                @Ability1.canceled += instance.OnAbility1;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+            }
+        }
+    }
+    public ScytheActions @Scythe => new ScytheActions(this);
     public interface IWorldActions
     {
         void OnHorizontal(InputAction.CallbackContext context);
-        void OnVertical(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnVertical(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
         void OnCharacterSwitchFwd(InputAction.CallbackContext context);
         void OnCharacterSwitchBack(InputAction.CallbackContext context);
+    }
+    public interface IBrokenHornActions
+    {
+        void OnHornExclusive(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IScytheActions
+    {
+        void OnAbility1(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

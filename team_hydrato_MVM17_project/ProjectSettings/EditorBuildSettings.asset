@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Leaviun/World_0.unity
     guid: 517f162ef93c829468e5f98aaf3d8b6e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cr4zY/Scenes/TechLab.unity
     guid: eb5295ee6257d604ebe8a4d1090fb9b1
   - enabled: 1
     path: Assets/Leaviun/Demo1.unity
     guid: c29a3e23a6cd8b445a03d77d74574169
+  - enabled: 1
+    path: Assets/Cr4zY/Scenes/ExampleSceneBuilding.unity
+    guid: 9c2183c89722b2f438cb79adaafaf41f
   m_configObjects: {}

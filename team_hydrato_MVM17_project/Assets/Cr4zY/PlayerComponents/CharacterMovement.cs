@@ -14,6 +14,8 @@ public class CharacterMovement : MonoBehaviour
 
     //Actions for movement events
     public Action falling, wallLeft, wallTouch, turn, turnComplete;
+
+
     public Action<bool> landed;
 
     //Moving to the right
@@ -23,27 +25,34 @@ public class CharacterMovement : MonoBehaviour
     //Moving at all
     public bool Moving { get { return (localSpace == null ? rb.velocity != Vector2.zero : Vector2.Equals(localSpace.velocity, rb.velocity)); } }
 
+    internal void Launch(Vector2 from, float launchPower)
+    {
+        throw new NotImplementedException();
+    }
+
     //Stats and counters
     private int MaxJumps;
     private int jumpsLeft;
+    private int boundsLeft;
     private float currentJumpForce = -1;
 
-    [SerializeField] float maxSpeed = 8;
-    [SerializeField] float maxAirSpeed = 8;
-    [SerializeField] float acceleration = 24;
-    [SerializeField] float airAcceleration = 24;
-    [SerializeField] float minJumpForce = 4.5f;
-    [SerializeField] float maxJumpForce = 12.5f;
-    [SerializeField] float gravityScale = 3;
-    [SerializeField] float wallSlideSpeed = 0.3f;
-    [SerializeField] float wallJumpForce = 10f;
-    //[SerializeField] float 
-    //[SerializeField] float
+    private float maxSpeed = 8;
+    private float maxAirSpeed = 8;
+    private float acceleration = 24;
+    private float airAcceleration = 24;
+    private float minJumpForce = 4.5f;
+    private float maxJumpForce = 12.5f;
+    private float gravityScale = 3;
+    private float wallSlideSpeed = 0.3f;
+    private float wallJumpForce = 10f;
+    //private float 
+    //private float
 
     //Horizontal input reference
     InputAction MoveX;
 
     public bool CanJump { get { return jumpsLeft > 0; } }
+    public bool CanBound { get { return boundsLeft > 0; } }
 
     //Initialiser, sets values that were previously null
     public void Init(PIA pia)
@@ -86,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         //Apply deceleration and cap at 0
-        xCom -= (xCom > 0 ? 1.75f : -1.75f) * acceleration * Time.fixedDeltaTime;
+        xCom -= (xCom > 0 ? 1.25f : -1.25f) * acceleration * Time.fixedDeltaTime;
         xCom = _posX ? Mathf.Max(xCom, 0) : Mathf.Min(xCom, 0);
 
         //gravity applied here
@@ -177,7 +186,7 @@ public class CharacterMovement : MonoBehaviour
     public void ApplyTurn()
     {
 
-        if (Mathf.Abs(rb.velocity.x) < maxSpeed * 0.2f)
+        if (Mathf.Abs(rb.velocity.x) < maxSpeed * 0.05f)
         {
             rb.velocity = 0.5f * maxSpeed * (_posX ? Vector2.right : Vector2.left);
             turnComplete?.Invoke();
@@ -191,6 +200,7 @@ public class CharacterMovement : MonoBehaviour
     public void OnLand()
     {
         jumpsLeft = MaxJumps;
+        boundsLeft = 3;
         landed?.Invoke(MoveX.ReadValue<float>() != 0);
 
         //Catch case for landing with movement intent - adds velocity to counter friction on landing halting the player
@@ -252,7 +262,6 @@ public class CharacterMovement : MonoBehaviour
             return;
         }
 
-        Debug.Log("WEE");
     }
 
     //Collision exit logic
@@ -346,7 +355,8 @@ public class CharacterMovement : MonoBehaviour
 
     }
 
-    public Vector2 FindRelativeToMe(Vector2 offset) {
+    public Vector2 FindRelativeToMe(Vector2 offset)
+    {
 
         return rb.position + offset;
 
@@ -359,5 +369,18 @@ public class CharacterMovement : MonoBehaviour
         currentWall = null;
         currentJumpForce = -1;
         jumpsLeft = 0;
+    }
+
+
+    public void PerformWallBound()
+    {
+        ToggleGravity();
+        RestRB();
+        if (boundsLeft == 0)
+        {
+            return;
+        }
+        rb.velocity += ((boundsLeft * 0.1f) + 0.7f) * 16.5f * Vector2.up;
+        boundsLeft--;
     }
 }

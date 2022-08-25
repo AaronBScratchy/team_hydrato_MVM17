@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-internal class PS_Running : AbstractUpdatingPS
+public class PS_Running : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         name = "Running";
         base.Init(_a, _m, _s, _c);

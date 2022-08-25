@@ -2,9 +2,9 @@
 using UnityEngine;
 
 
-internal class PS_WallJump : AbstractUpdatingPS
+public class PS_WallJump : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         name = "WallJump";
         base.Init(_a, _m, _s, _c);

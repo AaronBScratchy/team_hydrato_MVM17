@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-internal class PS_Idle : AbstractUpdatingPS
+public class PS_Idle : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         name = "Idle";
         base.Init(_a, _m, _s, _c);
@@ -54,11 +54,19 @@ internal class PS_Idle : AbstractUpdatingPS
     }
     private void ChangeToNext(InputAction.CallbackContext obj)
     {
-        stateMachine.ChangeCharacterWish(true);
+        StartCharacterChange(true);
     }
-    
+
     private void ChangeToPrev(InputAction.CallbackContext obj)
     {
-        stateMachine.ChangeCharacterWish(false);
+        StartCharacterChange(false);
+    }
+    private void StartCharacterChange(bool next)
+    {
+        selector.ChangeCharacter(next);
+        stateMachine.RebindStateAnimations(selector.CurrentCharacter.ToString());
+        movement.LoadStats(Resources.Load<CharacterStats>("Player Stats").GetStats(selector.CurrentCharacter));
+        movement.Teleport(movement.FindRelativeToMe(Vector2.up*0.25f));
+        OnExit?.Invoke(State.Falling);
     }
 }

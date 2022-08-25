@@ -24,9 +24,9 @@ public class CustomAnimationController : MonoBehaviour
     private SpriteAnimationFrame currentFrame;
 
     //Get reference to the sprite renderer
-    public void Init()
+    public void AssignRenderer(SpriteRenderer renderer)
     {
-        SR = GetComponent<SpriteRenderer>();
+        SR = renderer;
     }
 
     //Start play animation
@@ -47,7 +47,7 @@ public class CustomAnimationController : MonoBehaviour
         waitingSprites = new(clip.GetSprites().GetFrames());
 
         //Get first frame
-        currentFrame = waitingSprites.Dequeue();
+        currentFrame = waitingSprites.Dequeue();    
 
         //Update sprite
         UpdateDisplay();

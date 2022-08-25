@@ -1,24 +1,28 @@
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PS_WallSlide : AbstractPlayerState
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, Character _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
     {
         name = "WallSlide";
         base.Init(_a, _m, _s, _c);
     }
     public override void OnStateEnter(PIA actions)
     {
-        base.OnStateEnter(actions);
         movement.ToggleGravity();
         movement.WallSlide();
         anim.SetFlip(movement.FacingPosX);
-        actions.World.Jump.performed += WallJump;
+        actions.BrokenHorn.Jump.performed += WallJump;
+        actions.Scythe.Ability1.performed += WallCling;
         actions.World.Crouch.performed += WallDrop;
         movement.landed += OnLand;
         movement.wallLeft += Fall;
         anim.PlayAnimation(clip, false);
+    }
+
+    private void WallCling(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.WallCling);
     }
 
     private void OnLand(bool moving)
@@ -47,8 +51,9 @@ public class PS_WallSlide : AbstractPlayerState
     public override void OnStateExit(PIA actions)
     {
         movement.ToggleGravity();
-        actions.World.Jump.performed -= WallJump;
+        actions.BrokenHorn.Jump.performed -= WallJump;
         actions.World.Crouch.performed -= WallDrop;
+        actions.Scythe.Ability1.performed -= WallCling;
         movement.landed -= OnLand;
         movement.wallLeft -= Fall;
     }

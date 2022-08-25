@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 internal class PlayerCamera : MonoBehaviour
 {
-    private Transform player, cam;
+    private Transform cam;
     [SerializeField] private Vector3 offset;
     private readonly float camSpeed = 15;
 
@@ -14,7 +14,7 @@ internal class PlayerCamera : MonoBehaviour
         cam.GetComponent<Camera>().orthographic = true;
         cam.gameObject.AddComponent<FMODUnity.StudioListener>();
 
-        cam.position = player.position + offset;
+        cam.position = transform.position + offset;
 
     }
 
@@ -22,7 +22,7 @@ internal class PlayerCamera : MonoBehaviour
     private void FixedUpdate()
     {
 
-        cam.position = Vector3.Lerp(cam.position, player.position + offset, camSpeed * Time.deltaTime);
+        cam.position = Vector3.Lerp(cam.position, transform.position + offset, camSpeed * Time.deltaTime);
 
     }
 
@@ -34,11 +34,6 @@ internal class PlayerCamera : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
-    }
-
-    internal void Focus(Transform newTarget)
-    {
-        player = newTarget;
     }
 }
 

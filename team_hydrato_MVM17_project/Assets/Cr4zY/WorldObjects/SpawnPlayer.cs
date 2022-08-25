@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SpawnPlayer : MonoBehaviour
 {
-    [SerializeField] CharacterInit playerPrefab;
-    public CharacterStateMachine Spawn(PIA actions)
+    [SerializeField] PlayerInit playerPrefab;
+    public void Awake()
     {
-        return Instantiate(playerPrefab, transform.position, transform.rotation).Init(actions);
+        Instantiate(playerPrefab, transform.position, transform.rotation).Init();
     }
 }

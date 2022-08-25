@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: Scythe_Falling
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: 606503133, guid: 55af84f2e7ccb2647a50682b0c1ea7be, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 1641800333, guid: 55af84f2e7ccb2647a50682b0c1ea7be, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 2058280399, guid: 55af84f2e7ccb2647a50682b0c1ea7be, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -878876460, guid: 55af84f2e7ccb2647a50682b0c1ea7be, type: 3}
+    _time: 0.12
