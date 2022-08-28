@@ -79,6 +79,14 @@ public class CharacterMovement : MonoBehaviour
         gravityScale = data.gravityScale;
         rb.gravityScale = gravityScale;
     }
+
+    public State ResolveGroundState()
+    {
+
+        return MoveX.ReadValue<float>() == 0 ? State.Idle : State.Running;
+
+    }
+
     //Per frame reduction of speed
     public void Decelerate()
     {

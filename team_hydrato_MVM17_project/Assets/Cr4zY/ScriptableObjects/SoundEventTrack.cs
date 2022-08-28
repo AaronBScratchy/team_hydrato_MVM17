@@ -16,9 +16,9 @@ public class SoundEventTrack : ScriptableObject
 public struct SoundEvent
 {
 
-    [SerializeField] EventReference _event;
+    [SerializeField] private EventReference _event;
 
-    [SerializeField] float _time;
+    [SerializeField] private float _time;
 
     public EventReference Event { get { return _event; } }
     public float Time { get { return _time; } }

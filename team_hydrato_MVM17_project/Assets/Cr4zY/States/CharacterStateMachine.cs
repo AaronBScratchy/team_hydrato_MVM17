@@ -13,7 +13,8 @@ public enum State
     WallSlide,
     WallJump,
     WallCling,
-    WallBound
+    WallBound,
+    Attacking
 }
 
 public class CharacterStateMachine : MonoBehaviour
@@ -38,6 +39,7 @@ public class CharacterStateMachine : MonoBehaviour
         states.Add(State.WallJump, ScriptableObject.CreateInstance<PS_WallJump>());
         states.Add(State.WallCling, ScriptableObject.CreateInstance<PS_WallCling>());
         states.Add(State.WallBound, ScriptableObject.CreateInstance<PS_WallBound>());
+        states.Add(State.Attacking, ScriptableObject.CreateInstance<PS_Attacking>());
 
         foreach (KeyValuePair<State, AbstractPlayerState> pair in states)
         {

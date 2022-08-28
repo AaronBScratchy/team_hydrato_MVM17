@@ -27,9 +27,9 @@ public abstract class AbstractPlayerState : ScriptableObject
     //Behaviour to run when the state stops running
     public abstract void OnStateExit(PIA actions);
 
-    public void BindStateAnimation(string currentChar)
+    public virtual void BindStateAnimation(string currentChar)
     {
-        clip = Resources.Load<AnimationClip>("AnimationClips/Player/" + currentChar + "/" + name);
+        clip = Resources.Load<AnimationClip>("AnimationClips/Player/General/" + currentChar + "/" + name);
     }
 
 }

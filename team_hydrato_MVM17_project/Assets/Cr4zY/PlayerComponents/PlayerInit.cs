@@ -22,7 +22,7 @@ public class PlayerInit : MonoBehaviour
         moves.LoadStats(data);
         checkPoint.Init(moves);
         selector.Init(inputActions);
-        anim.AssignRenderer(GetComponent<SpriteRenderer>());
+        anim.Init(GetComponent<SpriteRenderer>());
         states.Init(anim,moves,selector,inputActions);
         cam.Init();
 

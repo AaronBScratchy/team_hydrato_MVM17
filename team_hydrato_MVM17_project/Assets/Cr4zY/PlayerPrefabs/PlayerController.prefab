@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4013471799920624180}
   - component: {fileID: 9211529127072976919}
   - component: {fileID: 7687231130133957060}
+  - component: {fileID: -2184252889287774381}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -215,3 +216,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0.5, z: -10}
+--- !u!114 &-2184252889287774381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580691421633815854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3f2deb06664b74d83d3cd5ebc93b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

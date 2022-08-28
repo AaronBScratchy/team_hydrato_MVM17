@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: Horn_Attack3
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: 1039452642, guid: e6745881e56e7e643bba60489e896dd4, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 425499433, guid: e6745881e56e7e643bba60489e896dd4, type: 3}
+    _time: 0.08
+  - _sprite: {fileID: 616894076, guid: e6745881e56e7e643bba60489e896dd4, type: 3}
+    _time: 0.14
+  - _sprite: {fileID: -1707868441, guid: e6745881e56e7e643bba60489e896dd4, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 468367716, guid: e6745881e56e7e643bba60489e896dd4, type: 3}
+    _time: 0.1

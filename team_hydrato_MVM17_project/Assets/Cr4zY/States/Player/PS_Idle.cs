@@ -19,6 +19,7 @@ public class PS_Idle : AbstractUpdatingPS
         actions.World.Jump.performed += Jump;
         actions.World.CharacterSwitchFwd.performed += ChangeToNext;
         actions.World.CharacterSwitchBack.performed += ChangeToPrev;
+        actions.World.Attack.performed += Attack;
     }
 
     public override void OnStateExit(PIA actions)
@@ -29,6 +30,7 @@ public class PS_Idle : AbstractUpdatingPS
 
         actions.World.CharacterSwitchFwd.performed -= ChangeToNext;
         actions.World.CharacterSwitchBack.performed -= ChangeToPrev;
+        actions.World.Attack.performed -= Attack;
     }
 
     protected override void OnUpdate()
@@ -42,6 +44,11 @@ public class PS_Idle : AbstractUpdatingPS
             return;
         }
         movement.Decelerate();
+    }
+
+    private void Attack(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.Attacking);
     }
     private void StartRun(InputAction.CallbackContext obj)
     {

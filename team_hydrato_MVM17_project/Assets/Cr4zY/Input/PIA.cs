@@ -89,6 +89,15 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""aff8269d-014b-46b3-83a1-c1794bbbf5b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -344,6 +353,17 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aae6cc63-9065-4eea-8838-73875380de16"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -543,6 +563,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         m_World_Exit = m_World.FindAction("Exit", throwIfNotFound: true);
         m_World_CharacterSwitchFwd = m_World.FindAction("CharacterSwitchFwd", throwIfNotFound: true);
         m_World_CharacterSwitchBack = m_World.FindAction("CharacterSwitchBack", throwIfNotFound: true);
+        m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
         // BrokenHorn
         m_BrokenHorn = asset.FindActionMap("BrokenHorn", throwIfNotFound: true);
         m_BrokenHorn_HornExclusive = m_BrokenHorn.FindAction("HornExclusive", throwIfNotFound: true);
@@ -617,6 +638,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Exit;
     private readonly InputAction m_World_CharacterSwitchFwd;
     private readonly InputAction m_World_CharacterSwitchBack;
+    private readonly InputAction m_World_Attack;
     public struct WorldActions
     {
         private @PIA m_Wrapper;
@@ -628,6 +650,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         public InputAction @Exit => m_Wrapper.m_World_Exit;
         public InputAction @CharacterSwitchFwd => m_Wrapper.m_World_CharacterSwitchFwd;
         public InputAction @CharacterSwitchBack => m_Wrapper.m_World_CharacterSwitchBack;
+        public InputAction @Attack => m_Wrapper.m_World_Attack;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -658,6 +681,9 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @CharacterSwitchBack.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchBack;
                 @CharacterSwitchBack.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchBack;
                 @CharacterSwitchBack.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnCharacterSwitchBack;
+                @Attack.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_WorldActionsCallbackInterface = instance;
             if (instance != null)
@@ -683,6 +709,9 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                 @CharacterSwitchBack.started += instance.OnCharacterSwitchBack;
                 @CharacterSwitchBack.performed += instance.OnCharacterSwitchBack;
                 @CharacterSwitchBack.canceled += instance.OnCharacterSwitchBack;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -778,6 +807,7 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         void OnExit(InputAction.CallbackContext context);
         void OnCharacterSwitchFwd(InputAction.CallbackContext context);
         void OnCharacterSwitchBack(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
     public interface IBrokenHornActions
     {

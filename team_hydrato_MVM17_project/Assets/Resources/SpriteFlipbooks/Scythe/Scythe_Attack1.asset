@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: Scythe_Attack1
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: 563371885, guid: 8c5fc143c6f3ae34fb3e396b5e91ec11, type: 3}
+    _time: 0.05
+  - _sprite: {fileID: -2140037131, guid: 8c5fc143c6f3ae34fb3e396b5e91ec11, type: 3}
+    _time: 0.05
+  - _sprite: {fileID: -587168134, guid: 8c5fc143c6f3ae34fb3e396b5e91ec11, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: -575328377, guid: 8c5fc143c6f3ae34fb3e396b5e91ec11, type: 3}
+    _time: 0.08
+  - _sprite: {fileID: 1013668743, guid: 8c5fc143c6f3ae34fb3e396b5e91ec11, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -1268869848, guid: 8c5fc143c6f3ae34fb3e396b5e91ec11, type: 3}
+    _time: 0.06

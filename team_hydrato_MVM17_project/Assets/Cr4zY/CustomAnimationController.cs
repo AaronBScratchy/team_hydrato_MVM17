@@ -14,30 +14,33 @@ public class CustomAnimationController : MonoBehaviour
     private Queue<SoundEvent> playedSounds = new();
     private Queue<SoundEvent> queuedSounds;
 
-    bool looping;
-    bool playing;
-    bool muted;
+    //Queue for hitboxes
+    private Queue<HitScanData> performedHits = new();
+    private Queue<HitScanData> queuedHits;
+
+    bool looping, playing, muted, striking;
 
     public Action animOver;
 
     private SpriteRenderer SR;
     private SpriteAnimationFrame currentFrame;
+    private PlayerHitBehaviour hitter;
 
     //Get reference to the sprite renderer
-    public void AssignRenderer(SpriteRenderer renderer)
+    public void Init(SpriteRenderer renderer)
     {
         SR = renderer;
+        hitter = GetComponent<PlayerHitBehaviour>();
     }
 
     //Start play animation
     public void PlayAnimation(AnimationClip clip, bool loop)
     {
+        striking = false;
         //End currently playing animation
         if (playing)
         {
-            CancelInvoke();
-            playedSprites.Clear();
-            playedSounds.Clear();
+            ClearQueues();
         }
 
         looping = loop;
@@ -47,7 +50,7 @@ public class CustomAnimationController : MonoBehaviour
         waitingSprites = new(clip.GetSprites().GetFrames());
 
         //Get first frame
-        currentFrame = waitingSprites.Dequeue();    
+        currentFrame = waitingSprites.Dequeue();
 
         //Update sprite
         UpdateDisplay();
@@ -64,6 +67,53 @@ public class CustomAnimationController : MonoBehaviour
 
         queuedSounds = new(clip.GetSound().Events);
         Invoke(nameof(SoundForward), queuedSounds.Peek().Time);
+    }
+
+    private void ClearQueues()
+    {
+        CancelInvoke(nameof(FrameShift));
+        CancelInvoke(nameof(SoundForward));
+        CancelInvoke(nameof(NextHit));
+        playedSprites.Clear();
+        playedSounds.Clear();
+        performedHits.Clear();
+    }
+
+    public void PlayAttackAnimation(AttackingAnimationClip clip, bool loop)
+    {
+        PlayAnimation(clip, loop);
+
+        striking = true;
+
+        queuedHits = new(clip.GetHits().Data);
+
+        Invoke(nameof(NextHit), queuedHits.Peek().WaitTime);
+
+    }
+
+    private void NextHit()
+    {
+        if (!striking)
+        {
+            return;
+        }
+        HitScanData data = queuedHits.Dequeue();
+        if (data.Local)
+        {
+            hitter.StartHitScan(data.Size, GetComponent<Rigidbody2D>(), data.Duration, data.Offset.x, data.Offset.y);
+        }
+        else
+        {
+            hitter.StartHitScan(data.Size, data.Offset, data.Duration);
+        }
+
+        performedHits.Enqueue(data);
+
+        if (queuedHits.Count == 0)
+        {
+            return;
+        }
+        Invoke(nameof(NextHit), queuedHits.Peek().WaitTime);
     }
 
     public void SoundForward()
@@ -117,6 +167,7 @@ public class CustomAnimationController : MonoBehaviour
             }
 
             playing = false;
+            ClearQueues();
             animOver?.Invoke();
             return;
         }
@@ -143,18 +194,32 @@ public class CustomAnimationController : MonoBehaviour
         UpdateDisplay();
 
         Invoke(nameof(FrameShift), currentFrame.Time);
-        if (muted)
+        if (!muted)
+        {
+            while (queuedSounds.Count > 0)
+            {
+                playedSounds.Enqueue(queuedSounds.Dequeue());
+            }
+            queuedSounds = new(playedSounds);
+            playedSounds.Clear();
+
+            Invoke(nameof(SoundForward), queuedSounds.Peek().Time);
+        }
+
+        if (!striking)
         {
             return;
         }
-        while (queuedSounds.Count > 0)
-        {
-            playedSounds.Enqueue(queuedSounds.Dequeue());
-        }
-        queuedSounds = new(playedSounds);
-        playedSounds.Clear();
 
-        Invoke(nameof(SoundForward), queuedSounds.Peek().Time);
+        while (queuedHits.Count > 0)
+        {
+            performedHits.Enqueue(queuedHits.Dequeue());
+        }
+        queuedHits = new(performedHits);
+        performedHits.Clear();
+
+        Invoke(nameof(NextHit), queuedHits.Peek().WaitTime);
+
 
     }
 }
