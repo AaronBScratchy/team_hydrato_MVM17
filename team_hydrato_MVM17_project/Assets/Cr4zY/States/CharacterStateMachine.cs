@@ -14,7 +14,8 @@ public enum State
     WallJump,
     WallCling,
     WallBound,
-    Attacking
+    Attacking,
+    Hurt
 }
 
 public class CharacterStateMachine : MonoBehaviour
@@ -25,7 +26,7 @@ public class CharacterStateMachine : MonoBehaviour
     AbstractPlayerState currentState;
     PIA actions;
 
-    public void Init(CustomAnimationController anim, CharacterMovement moves, CharacterSelect character, PIA pia)
+    public void Init(CustomAnimationController anim, CharacterMovement moves, CharacterSelect character, PlayerHurtBehaviour hurtBehaviour, PIA pia)
     {
         actions = pia;
 
@@ -40,10 +41,11 @@ public class CharacterStateMachine : MonoBehaviour
         states.Add(State.WallCling, ScriptableObject.CreateInstance<PS_WallCling>());
         states.Add(State.WallBound, ScriptableObject.CreateInstance<PS_WallBound>());
         states.Add(State.Attacking, ScriptableObject.CreateInstance<PS_Attacking>());
+        states.Add(State.Hurt, ScriptableObject.CreateInstance<PS_Hurt>());
 
         foreach (KeyValuePair<State, AbstractPlayerState> pair in states)
         {
-            pair.Value.Init(anim, moves, this, character);
+            pair.Value.Init(anim, moves, this, character, hurtBehaviour);
             pair.Value.OnExit += StateTransition;
         }
 

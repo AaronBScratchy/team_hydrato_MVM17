@@ -2,10 +2,10 @@ using UnityEngine.InputSystem;
 
 public class PS_WallSlide : AbstractPlayerState
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         name = "WallSlide";
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
     }
     public override void OnStateEnter(PIA actions)
     {
@@ -18,6 +18,21 @@ public class PS_WallSlide : AbstractPlayerState
         movement.landed += OnLand;
         movement.wallLeft += Fall;
         anim.PlayAnimation(clip, false);
+        hurtBehaviour.hurt += GetHurt;
+    }
+    public override void OnStateExit(PIA actions)
+    {
+        movement.ToggleGravity();
+        actions.BrokenHorn.Jump.performed -= WallJump;
+        actions.World.Crouch.performed -= WallDrop;
+        actions.Scythe.Ability1.performed -= WallCling;
+        movement.landed -= OnLand;
+        movement.wallLeft -= Fall;
+        hurtBehaviour.hurt -= GetHurt;
+    }
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
     }
 
     private void WallCling(InputAction.CallbackContext obj)
@@ -47,14 +62,5 @@ public class PS_WallSlide : AbstractPlayerState
     {
         movement.WallDrop();
         Fall();
-    }
-    public override void OnStateExit(PIA actions)
-    {
-        movement.ToggleGravity();
-        actions.BrokenHorn.Jump.performed -= WallJump;
-        actions.World.Crouch.performed -= WallDrop;
-        actions.Scythe.Ability1.performed -= WallCling;
-        movement.landed -= OnLand;
-        movement.wallLeft -= Fall;
     }
 }

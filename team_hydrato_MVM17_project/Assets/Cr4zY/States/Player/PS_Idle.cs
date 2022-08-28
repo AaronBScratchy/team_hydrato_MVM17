@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PS_Idle : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         name = "Idle";
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
     }
 
     public override void OnStateEnter(PIA actions)
@@ -20,6 +20,7 @@ public class PS_Idle : AbstractUpdatingPS
         actions.World.CharacterSwitchFwd.performed += ChangeToNext;
         actions.World.CharacterSwitchBack.performed += ChangeToPrev;
         actions.World.Attack.performed += Attack;
+        hurtBehaviour.hurt += GetHurt;
     }
 
     public override void OnStateExit(PIA actions)
@@ -31,6 +32,7 @@ public class PS_Idle : AbstractUpdatingPS
         actions.World.CharacterSwitchFwd.performed -= ChangeToNext;
         actions.World.CharacterSwitchBack.performed -= ChangeToPrev;
         actions.World.Attack.performed -= Attack;
+        hurtBehaviour.hurt -= GetHurt;
     }
 
     protected override void OnUpdate()
@@ -44,6 +46,10 @@ public class PS_Idle : AbstractUpdatingPS
             return;
         }
         movement.Decelerate();
+    }
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
     }
 
     private void Attack(InputAction.CallbackContext obj)

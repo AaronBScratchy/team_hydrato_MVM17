@@ -17,13 +17,15 @@ public class PlayerInit : MonoBehaviour
         CharacterSelect selector = GetComponent<CharacterSelect>();
         CustomAnimationController anim = GetComponent<CustomAnimationController>();
         PlayerCamera cam = GetComponent<PlayerCamera>();
+        PlayerHurtBehaviour hurt = GetComponent<PlayerHurtBehaviour>();
 
         moves.Init(inputActions);
         moves.LoadStats(data);
         checkPoint.Init(moves);
         selector.Init(inputActions);
         anim.Init(GetComponent<SpriteRenderer>());
-        states.Init(anim,moves,selector,inputActions);
+        hurt.Init();
+        states.Init(anim, moves, selector, hurt, inputActions);
         cam.Init();
 
         checkPoint.onDeath += states.Respawn;

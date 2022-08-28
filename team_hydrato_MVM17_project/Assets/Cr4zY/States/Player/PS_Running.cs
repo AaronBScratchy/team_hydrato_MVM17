@@ -2,10 +2,10 @@
 using UnityEngine.InputSystem;
 public class PS_Running : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         name = "Running";
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
     }
     public override void OnStateEnter(PIA actions)
     {
@@ -17,13 +17,10 @@ public class PS_Running : AbstractUpdatingPS
                 Turn();
                 return;
             }
-
-            //Debug.Log("Velocity:\t"+movement.GetComponent<Rigidbody2D>().velocity.x);
-            //Debug.Log("Input horizontal:\t"+actions.World.Horizontal.ReadValue<float>());
-            //Debug.Log("Values are aligned, continuing into run state...");
         }
         
         base.OnStateEnter(actions);
+        hurtBehaviour.hurt += GetHurt;
 
         anim.SetFlip(actions.World.Horizontal.ReadValue<float>() < 0);
         anim.PlayAnimation(clip, true);
@@ -39,6 +36,7 @@ public class PS_Running : AbstractUpdatingPS
         actions.World.Horizontal.canceled -= Rest;
         actions.World.Jump.performed -= Jump;
         movement.falling -= Fall;
+        hurtBehaviour.hurt -= GetHurt;
     }
 
     protected override void OnFixedUpdate()
@@ -50,6 +48,10 @@ public class PS_Running : AbstractUpdatingPS
 
     protected override void OnUpdate()
     {
+    }
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
     }
 
     private void Fall()

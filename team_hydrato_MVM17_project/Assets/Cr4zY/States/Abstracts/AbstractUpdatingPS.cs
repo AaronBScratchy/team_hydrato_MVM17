@@ -4,9 +4,9 @@
 public abstract class AbstractUpdatingPS : AbstractPlayerState
 {
     //Initialises the state
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
     }
 
     public override void OnStateEnter(PIA actions)

@@ -11,7 +11,7 @@ public class PlayerHurtBehaviour : MonoBehaviour
     private int Health;
     private int maxHealth;
     private bool IB;
-    public Action damageTaken;
+    public Action hurt;
     public void Init()
     {
         movement = GetComponent<CharacterMovement>();
@@ -53,7 +53,7 @@ public class PlayerHurtBehaviour : MonoBehaviour
         {
             Health--;
 
-            damageTaken?.Invoke();
+            hurt?.Invoke();
 
             if (Health == 0)
             {

@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     //Last contacted surfaces references
     private Collider2D currentWall, currentGround;
 
+
     //Actions for movement events
     public Action falling, wallLeft, wallTouch, turn, turnComplete;
 
@@ -25,10 +26,6 @@ public class CharacterMovement : MonoBehaviour
     //Moving at all
     public bool Moving { get { return (localSpace == null ? rb.velocity != Vector2.zero : Vector2.Equals(localSpace.velocity, rb.velocity)); } }
 
-    internal void Launch(Vector2 from, float launchPower)
-    {
-        throw new NotImplementedException();
-    }
 
     //Stats and counters
     private int MaxJumps;
@@ -80,11 +77,29 @@ public class CharacterMovement : MonoBehaviour
         rb.gravityScale = gravityScale;
     }
 
+    public void Launch(Vector2 from, float launchPower)
+    {
+        RestRB();
+
+        Vector2 launchDir = (rb.position - from).normalized * launchPower;
+        rb.velocity = launchDir;
+    }
+
     public State ResolveGroundState()
     {
 
         return MoveX.ReadValue<float>() == 0 ? State.Idle : State.Running;
 
+    }
+
+    public State ResolveState()
+    {
+        if (currentGround == null)
+        {
+            return State.Falling;
+        }
+
+        return ResolveGroundState();
     }
 
     //Per frame reduction of speed

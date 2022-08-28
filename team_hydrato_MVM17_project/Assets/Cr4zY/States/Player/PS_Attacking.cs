@@ -10,9 +10,10 @@ public class PS_Attacking : AbstractUpdatingPS
     private bool inCancelWindow, inBufferWindow;
     private Action bufferCall;
     private float bufferTimer, cancelTimer, resetTimer;
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
         inCancelWindow = false;
         inBufferWindow = false;
         index = -1;
@@ -22,6 +23,8 @@ public class PS_Attacking : AbstractUpdatingPS
         movement.RestRB();
         movement.falling += Fall;
 
+        hurtBehaviour.hurt += GetHurt;
+
         if (index < 0)
         {
             stateMachine.onUpdate += OnUpdate;
@@ -29,8 +32,12 @@ public class PS_Attacking : AbstractUpdatingPS
 
         PerformNextAttack();
 
-
         actions.World.Attack.performed += OnAttackInState;
+    }
+
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
     }
 
     private void OnAttackInState(InputAction.CallbackContext obj)
@@ -52,6 +59,7 @@ public class PS_Attacking : AbstractUpdatingPS
     {
         movement.falling -= Fall;
 
+        hurtBehaviour.hurt -= GetHurt;
         actions.World.Attack.performed -= OnAttackInState;
     }
 

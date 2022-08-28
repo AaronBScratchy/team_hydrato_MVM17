@@ -2,10 +2,10 @@
 using UnityEngine.InputSystem;
 public class PS_Turning : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         name = "Turning";
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
     }
 
     public override void OnStateEnter(PIA actions)
@@ -18,6 +18,7 @@ public class PS_Turning : AbstractUpdatingPS
         movement.falling += Fall;
         actions.World.Jump.performed += Jump;
         actions.World.Horizontal.canceled += Idle;
+        hurtBehaviour.hurt += GetHurt;
     }
 
     public override void OnStateExit(PIA actions)
@@ -28,6 +29,7 @@ public class PS_Turning : AbstractUpdatingPS
         movement.falling -= Fall;
         actions.World.Jump.performed -= Jump;
         actions.World.Horizontal.canceled -= Idle;
+        hurtBehaviour.hurt -= GetHurt;
     }
 
     protected override void OnFixedUpdate()
@@ -37,6 +39,10 @@ public class PS_Turning : AbstractUpdatingPS
 
     protected override void OnUpdate()
     {
+    }
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
     }
 
     private void Run()

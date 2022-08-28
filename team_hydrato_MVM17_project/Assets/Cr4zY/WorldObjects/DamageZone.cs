@@ -9,18 +9,19 @@ public class DamageZone : MonoBehaviour
     [SerializeField] private int damage;
     private void Awake()
     {
+        GetComponent<Collider2D>().isTrigger = true;
         if (!launcher)
         {
             launchPower = 0;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.TryGetComponent<PlayerHurtBehaviour>(out PlayerHurtBehaviour hurt))
+        if (other.gameObject.TryGetComponent<PlayerHurtBehaviour>(out PlayerHurtBehaviour hurt))
         {
             if (launcher)
             {
-                hurt.LaunchPlayer(collision.GetContact(0).point, launchPower);
+                hurt.LaunchPlayer(transform.position,launchPower);
             }
             hurt.DamagePlayer(damage);
 

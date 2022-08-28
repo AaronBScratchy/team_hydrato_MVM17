@@ -8,15 +8,17 @@ public abstract class AbstractPlayerState : ScriptableObject
     protected CharacterMovement movement;
     protected CharacterStateMachine stateMachine;
     protected CharacterSelect selector;
+    protected PlayerHurtBehaviour hurtBehaviour;
     public Action<State> OnExit;
 
     //Initialiser references relevant monobehaviour components
-    public virtual void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public virtual void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         movement = _m;
         stateMachine = _s;
         selector = _c;
         anim = _a;
+        hurtBehaviour = _h;
 
         BindStateAnimation(selector.CurrentCharacter.ToString());
     }

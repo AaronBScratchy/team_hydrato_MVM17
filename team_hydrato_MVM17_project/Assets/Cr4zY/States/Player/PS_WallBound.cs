@@ -3,10 +3,10 @@
 public class PS_WallBound : AbstractUpdatingPS
 {
     private Rigidbody2D rb;
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         name = "WallBound";
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
         rb = _a.GetComponent<Rigidbody2D>();
     }
 
@@ -15,6 +15,7 @@ public class PS_WallBound : AbstractUpdatingPS
         base.OnStateEnter(actions);
         movement.wallLeft += Fall;
 
+        hurtBehaviour.hurt += GetHurt;
         if (movement.CanBound)
         {
             movement.ToggleGravity();
@@ -25,6 +26,18 @@ public class PS_WallBound : AbstractUpdatingPS
         movement.RestRB();
         Fall();
 
+    }
+    public override void OnStateExit(PIA actions)
+    {
+        base.OnStateExit(actions);
+        hurtBehaviour.hurt -= GetHurt;
+        anim.animOver -= movement.PerformWallBound;
+        movement.wallLeft -= Fall;
+        anim.animOver = null;
+    }
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
     }
 
     private void Fall()
@@ -37,13 +50,6 @@ public class PS_WallBound : AbstractUpdatingPS
         OnExit?.Invoke(State.WallCling);
     }
 
-    public override void OnStateExit(PIA actions)
-    {
-        base.OnStateExit(actions);
-        anim.animOver -= movement.PerformWallBound;
-        movement.wallLeft -= Fall;
-        anim.animOver = null;
-    }
 
     protected override void OnUpdate()
     {

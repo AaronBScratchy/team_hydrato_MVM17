@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PS_WallJump : AbstractUpdatingPS
 {
-    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c)
+    public override void Init(CustomAnimationController _a, CharacterMovement _m, CharacterStateMachine _s, CharacterSelect _c, PlayerHurtBehaviour _h)
     {
         name = "WallJump";
-        base.Init(_a, _m, _s, _c);
+        base.Init(_a, _m, _s, _c, _h);
     }
     public override void OnStateEnter(PIA actions)
     {
@@ -15,18 +15,9 @@ public class PS_WallJump : AbstractUpdatingPS
         movement.WallJump();
         movement.wallTouch += WallSlide;
         movement.falling += Fall;
+        hurtBehaviour.hurt += GetHurt;
         anim.Flip();
         anim.PlayAnimation(clip, false);
-    }
-
-    private void Fall()
-    {
-        OnExit?.Invoke(State.Falling);
-    }
-
-    private void WallSlide()
-    {
-        OnExit?.Invoke(State.WallSlide);
     }
 
     protected override void OnFixedUpdate()
@@ -43,7 +34,22 @@ public class PS_WallJump : AbstractUpdatingPS
         base.OnStateExit(actions);
         movement.wallTouch -= WallSlide;
         movement.falling -= Fall;
+        hurtBehaviour.hurt -= GetHurt;
 
+    }
+    private void GetHurt()
+    {
+        OnExit?.Invoke(State.Hurt);
+    }
+
+    private void Fall()
+    {
+        OnExit?.Invoke(State.Falling);
+    }
+
+    private void WallSlide()
+    {
+        OnExit?.Invoke(State.WallSlide);
     }
 }
 
