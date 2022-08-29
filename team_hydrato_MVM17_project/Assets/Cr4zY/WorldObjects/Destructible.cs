@@ -22,7 +22,6 @@ public class Destructible : MonoBehaviour, IHittable
             return;
         }
 
-
         Destroy(GetComponent<Collider2D>());
         if (animated)
         {

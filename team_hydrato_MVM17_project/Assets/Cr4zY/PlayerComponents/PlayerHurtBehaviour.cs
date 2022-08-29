@@ -11,7 +11,7 @@ public class PlayerHurtBehaviour : MonoBehaviour
     private int Health;
     private int maxHealth;
     private bool IB;
-    public Action hurt;
+    public Action hurt,damageTaken;
     public void Init()
     {
         movement = GetComponent<CharacterMovement>();
@@ -49,12 +49,11 @@ public class PlayerHurtBehaviour : MonoBehaviour
 
     private void TakeDamage(int damageToTake)
     {
-        for(int i = 0; i < damageToTake; i++)
+        hurt?.Invoke();
+        for (int i = 0; i < damageToTake; i++)
         {
             Health--;
-
-            hurt?.Invoke();
-
+            damageTaken?.Invoke();
             if (Health == 0)
             {
                 checkPointer.onDeath?.Invoke();
