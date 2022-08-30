@@ -6,7 +6,7 @@ public class HPlatform : MonoBehaviour
 {
     public List<Transform> points;
     public Transform platform;
-    private Vector2 endPosition = new Vector2(5, 0);
+    private Vector2 endPosition = new(5, 0);
     private Vector2 startPosition;
     private float desiredDuration = 3f;
     private float elapsedTime;

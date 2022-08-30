@@ -17,7 +17,7 @@ public class PlayerHitBehaviour : MonoBehaviour
 
     private IEnumerator HitScan(Vector2 size, Rigidbody2D localBody, Vector2 localOffset, float duration)
     {
-        List<IHittable> hits = new List<IHittable>();
+        List<IHittable> hits = new();
         while (duration > 0)
         {
             foreach (RaycastHit2D hit in Physics2D.BoxCastAll(localBody.position + localOffset, size, 0, Vector2.zero))

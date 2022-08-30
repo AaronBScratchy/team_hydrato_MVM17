@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: StarWard_Idle
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: -1916637536, guid: 3caeaf3c379901a49950b17ee0f1e441, type: 3}
+    _time: 0.2
+  - _sprite: {fileID: -1135413069, guid: 3caeaf3c379901a49950b17ee0f1e441, type: 3}
+    _time: 0.2
+  - _sprite: {fileID: 254676599, guid: 3caeaf3c379901a49950b17ee0f1e441, type: 3}
+    _time: 0.2
+  - _sprite: {fileID: -1704819170, guid: 3caeaf3c379901a49950b17ee0f1e441, type: 3}
+    _time: 0.2
+  - _sprite: {fileID: -776315423, guid: 3caeaf3c379901a49950b17ee0f1e441, type: 3}
+    _time: 0.2
+  - _sprite: {fileID: 1504827739, guid: 3caeaf3c379901a49950b17ee0f1e441, type: 3}
+    _time: 0.2
