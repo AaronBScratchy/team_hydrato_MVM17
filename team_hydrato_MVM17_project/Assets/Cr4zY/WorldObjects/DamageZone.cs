@@ -7,6 +7,7 @@ public class DamageZone : MonoBehaviour
     [SerializeField] private bool launcher;
     [SerializeField] private float launchPower;
     [SerializeField] private int damage;
+    [SerializeField] private Vector2 offset;
     private void Awake()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -21,10 +22,10 @@ public class DamageZone : MonoBehaviour
         {
             if (launcher)
             {
-                hurt.LaunchPlayer(transform.position,launchPower);
+                hurt.LaunchPlayer((Vector2)transform.position + offset, launchPower);
             }
             hurt.DamagePlayer(damage);
-
+            return;
         }
     }
 

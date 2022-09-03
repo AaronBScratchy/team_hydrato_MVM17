@@ -84,6 +84,7 @@ public class PS_Attacking : AbstractUpdatingPS
         anim.PlayAttackAnimation(attackClips[index], false);
         Debug.Log(attackClips[index].name);
         AnimationCancelWindow cancelWindow = attackClips[index].GetWindow();
+        movement.Launch(movement.FindRelativeToMe(Vector2.right*(movement.FacingPosX?-1:1)),4);
 
         anim.animOver += EndAttack;
 

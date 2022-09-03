@@ -14,10 +14,13 @@ public class DeathZone : MonoBehaviour
             return;
         }
 
-        if(collision.TryGetComponent<CharacterCheckpointer>(out CharacterCheckpointer player))
+        if (collision.TryGetComponent<CharacterCheckpointer>(out CharacterCheckpointer player))
         {
             player.onDeath?.Invoke();
+            return;
         }
+
+        Destroy(collision.gameObject);
     }
 }
 

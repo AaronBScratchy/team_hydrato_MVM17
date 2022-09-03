@@ -24,13 +24,13 @@ public class CustomAnimationController : MonoBehaviour
 
     private SpriteRenderer SR;
     private SpriteAnimationFrame currentFrame;
-    private PlayerHitBehaviour hitter;
+    private HitBehaviour hitter;
 
     //Get reference to the sprite renderer
     public void Init(SpriteRenderer renderer)
     {
         SR = renderer;
-        hitter = GetComponent<PlayerHitBehaviour>();
+        hitter = GetComponent<HitBehaviour>();
     }
 
     //Start play animation
@@ -100,7 +100,7 @@ public class CustomAnimationController : MonoBehaviour
         HitScanData data = queuedHits.Dequeue();
         if (data.Local)
         {
-            hitter.StartHitScan(data.Size, GetComponent<Rigidbody2D>(), data.Duration, data.Offset.x, data.Offset.y);
+            hitter.StartHitScan(data.Size, GetComponent<Rigidbody2D>(), data.Duration, SR.flipX, data.Offset.x, data.Offset.y);
         }
         else
         {

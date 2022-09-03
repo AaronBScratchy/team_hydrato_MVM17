@@ -1,27 +1,29 @@
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerHitBehaviour : HitBehaviour
+public class AIHitBehaviour : HitBehaviour
 {
+    [SerializeField] private int DamagePerHit;
+    [SerializeField] private bool launcher;
+    [SerializeField] private float launchPower;
     protected override IEnumerator HitScan(Vector2 size, Rigidbody2D localBody, Vector2 localOffset, float duration)
     {
-        List<IHittable> hits = new();
         while (duration > 0)
         {
             foreach (RaycastHit2D hit in Physics2D.BoxCastAll(localBody.position + localOffset, size, 0, Vector2.zero))
             {
-                IHittable target = hit.collider.GetComponent<IHittable>();
+                PlayerHurtBehaviour target = hit.collider.GetComponent<PlayerHurtBehaviour>();
                 if (target == null)
                 {
                     continue;
                 }
-                if (hits.Contains(target))
+                if (launcher)
                 {
-                    continue;
+                    target.LaunchPlayer(localBody.position + Vector2.down, launchPower);
                 }
-                target.OnHit(this);
-                hits.Add(target);
+                target.DamagePlayer(DamagePerHit);
+
+                yield break;
             }
 
             yield return null;
@@ -37,11 +39,18 @@ public class PlayerHitBehaviour : HitBehaviour
         {
             foreach (RaycastHit2D hit in Physics2D.BoxCastAll(origin, size, 0, Vector2.zero))
             {
-                IHittable target = hit.collider.GetComponent<IHittable>();
-                if (target != null)
+                PlayerHurtBehaviour target = hit.collider.GetComponent<PlayerHurtBehaviour>();
+                if (target == null)
                 {
-                    target.OnHit(this);
+                    continue;
                 }
+                if (launcher)
+                {
+                    target.LaunchPlayer(origin, launchPower);
+                }
+                target.DamagePlayer(DamagePerHit);
+
+                yield break;
             }
 
             yield return null;
@@ -50,6 +59,5 @@ public class PlayerHitBehaviour : HitBehaviour
         }
 
     }
-
 }
 

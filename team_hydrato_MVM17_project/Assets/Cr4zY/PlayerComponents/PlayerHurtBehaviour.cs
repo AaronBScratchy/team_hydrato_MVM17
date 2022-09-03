@@ -8,8 +8,10 @@ public class PlayerHurtBehaviour : MonoBehaviour
     private CharacterMovement movement;
     private CharacterStateMachine stateMachine;
     private CharacterCheckpointer checkPointer;
-    private int Health;
-    private int maxHealth;
+    private int _health;
+    public int Health { get { return _health; }}
+    private int _maxHealth;
+    public int MaxHealth { get { return _maxHealth; }}
     private bool IB;
     public Action hurt,damageTaken;
     public void Init()
@@ -17,16 +19,16 @@ public class PlayerHurtBehaviour : MonoBehaviour
         movement = GetComponent<CharacterMovement>();
         stateMachine = GetComponent<CharacterStateMachine>();
         checkPointer = GetComponent<CharacterCheckpointer>();
-
-        maxHealth = 4;
-        Health = maxHealth;
+        IB = false;
+        _maxHealth = 4;
+        _health = _maxHealth;
 
         checkPointer.onDeath += OnRespawn;
     }
 
     private void OnRespawn()
     {
-        Health = maxHealth;
+        _health = _maxHealth;
     }
 
     public void DamagePlayer(int damage)
@@ -52,17 +54,22 @@ public class PlayerHurtBehaviour : MonoBehaviour
         hurt?.Invoke();
         for (int i = 0; i < damageToTake; i++)
         {
-            Health--;
+            _health--;
             damageTaken?.Invoke();
-            if (Health == 0)
+            if (_health == 0)
             {
-                checkPointer.onDeath?.Invoke();
+                Die();
                 break;
             }
         }
 
         IB = true;
         Invoke(nameof(TurnOffIB), 1.25f);
+    }
+
+    public void Die()
+    {
+        checkPointer.onDeath?.Invoke();
     }
 
     private void TurnOffIB()

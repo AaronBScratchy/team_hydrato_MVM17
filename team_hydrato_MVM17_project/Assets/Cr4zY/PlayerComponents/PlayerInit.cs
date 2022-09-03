@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInit : MonoBehaviour
 {
-
+    [SerializeField] UIController ui;
     public void Init()
     {
 
@@ -30,6 +30,8 @@ public class PlayerInit : MonoBehaviour
 
         checkPoint.onDeath += states.Respawn;
         checkPoint.onDeath += moves.Respawn;
+
+        Instantiate(ui).Init(hurt);
 
         Destroy(this);
     }

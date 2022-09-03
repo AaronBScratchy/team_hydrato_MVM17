@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Init(PlayerHurtBehaviour player)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponentInChildren<HealthBar>().Init(player);
     }
 }

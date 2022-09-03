@@ -13,8 +13,24 @@ public class AINavigator : MonoBehaviour
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        rb.isKinematic = true;
+        rb.gravityScale = 3;
         Invoke(nameof(Roam), UnityEngine.Random.Range(restTimeMin, restTimeMax));
+    }
+
+    public void MoveTowards(Vector2 target, CustomAnimationController anim)
+    {
+        CancelInvoke();
+
+        bool targAhead = target.x - rb.position.x > 0 == rb.velocity.x > 0;
+        if (targAhead)
+        {
+            return;
+        }
+
+        anim.SetFlip(!((target - rb.position).x > 0));
+        rb.velocity = (target - rb.position).x > 0 ? Vector2.right : Vector2.left;
+
     }
 
     private void Turn()
@@ -41,8 +57,6 @@ public class AINavigator : MonoBehaviour
     {
         rb.velocity = new(intentRight ? moveSpeed : -moveSpeed, 0);
         moving = true;
-
-
     }
 
     private void Idle()
@@ -76,6 +90,10 @@ public class AINavigator : MonoBehaviour
 
     public void HitBound(NavBoundType boundType)
     {
+        if (!rb.isKinematic)
+        {
+            return;
+        }
         boundHit += boundType switch
         {
             NavBoundType.LEFT => LeftBoundHit,
@@ -98,4 +116,32 @@ public class AINavigator : MonoBehaviour
     }
     private void BoundNull()
     { }
+
+    private void Land()
+    {
+        RestRB();
+        rb.isKinematic = true;
+        if (moving)
+        {
+            StartWalk();
+        }
+    }
+
+    public void Launch(Vector2 launcher)
+    {
+        CancelInvoke();
+        rb.isKinematic = false;
+        RestRB();
+        rb.velocity = launcher * 4;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (Vector2.Dot(collision.GetContact(0).normal, Vector2.up) > 0.85f)
+        {
+            Land();
+            return;
+        }
+    }
+
 }

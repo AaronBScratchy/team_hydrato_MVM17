@@ -60,7 +60,7 @@ public class CharacterMovement : MonoBehaviour
         _posX = true;
 
         MoveX = pia.World.Horizontal;
-
+        FacingPosX = true;
     }
 
     public void LoadStats(CharacterStatsData data)

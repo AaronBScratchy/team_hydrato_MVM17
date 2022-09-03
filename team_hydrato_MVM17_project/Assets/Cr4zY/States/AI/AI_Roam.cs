@@ -12,7 +12,13 @@ public class AI_Roam : AbstractAIState
     {
         nav.StartWalk();
         nav.onRest += Rest;
+        detector.onAggroStart += Aggro;
         anim.PlayAnimation(clip, true);
+    }
+
+    private void Aggro()
+    {
+        onExit?.Invoke(AIState.AGGRO);
     }
 
     private void Rest()
@@ -23,5 +29,6 @@ public class AI_Roam : AbstractAIState
     public override void OnStateExit()
     {
         nav.onRest -= Rest;
+        detector.onAggroStart -= Aggro;
     }
 }

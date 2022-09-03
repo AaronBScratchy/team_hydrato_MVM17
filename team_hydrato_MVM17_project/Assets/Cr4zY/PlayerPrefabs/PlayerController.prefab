@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 7687231130133957060}
   - component: {fileID: -2184252889287774381}
   - component: {fileID: -8014906605144688887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d51801a0c9f8b4dbb8500c0c283caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 3772833037320944612, guid: db521d2df0fc17a40acde787943152d7, type: 3}
 --- !u!114 &7687231130133957060
 MonoBehaviour:
   m_ObjectHideFlags: 0

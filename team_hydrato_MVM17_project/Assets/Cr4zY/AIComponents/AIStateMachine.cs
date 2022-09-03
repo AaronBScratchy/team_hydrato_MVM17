@@ -8,7 +8,8 @@ public enum AIState
     IDLE,
     ROAM,
     AGGRO,
-    ATTACK
+    ATTACK,
+    SUS
 }
 public class AIStateMachine : MonoBehaviour
 {
@@ -20,8 +21,9 @@ public class AIStateMachine : MonoBehaviour
     {
         states.Add(AIState.ROAM, ScriptableObject.CreateInstance<AI_Roam>());
         states.Add(AIState.IDLE, ScriptableObject.CreateInstance<AI_Idle>());
-        states.Add(AIState.AGGRO, ScriptableObject.CreateInstance<AI_Roam>());
-        states.Add(AIState.ATTACK, ScriptableObject.CreateInstance<AI_Roam>());
+        states.Add(AIState.AGGRO, ScriptableObject.CreateInstance<AI_Aggro>());
+        states.Add(AIState.ATTACK, ScriptableObject.CreateInstance<AI_Attack>());
+        states.Add(AIState.SUS, ScriptableObject.CreateInstance<AI_Sus>());
 
         foreach (KeyValuePair<AIState, AbstractAIState> pair in states)
         {

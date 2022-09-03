@@ -1,18 +1,19 @@
 ﻿using System;
 using UnityEngine;
-public class AI_Idle : AbstractAIState
+
+public class AI_Sus : AbstractAIState
 {
-    public override void Init(AINavigator _n, AIStateMachine _s, AIDetector _d, AIHurtBehaviour _h, CustomAnimationController _a)
+    public override void BindAnimation(string animationName)
     {
-        name = "Idle";
-        base.Init(_n, _s, _d, _h, _a);
+        clip = Resources.Load<AnimationClip>("AnimationClips/Enemy/" + animationName + "/Idle");
     }
     public override void OnStateEnter()
     {
         nav.RestRB();
-        nav.onRoam += Roam;
-        detector.onAggroStart += Aggro;
         anim.PlayAnimation(clip, true);
+        detector.StartDoubtTimer();
+        detector.doubtsCleared += Roam;
+        detector.onAggroStart += Aggro;
     }
 
     private void Aggro()
@@ -27,7 +28,7 @@ public class AI_Idle : AbstractAIState
 
     public override void OnStateExit()
     {
-        nav.onRoam -= Roam;
+        detector.doubtsCleared -= Roam;
         detector.onAggroStart -= Aggro;
     }
 }
