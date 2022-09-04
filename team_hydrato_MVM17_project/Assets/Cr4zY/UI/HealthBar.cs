@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
             obj.transform.SetParent(bar);
             obj.AddComponent<LayoutElement>();
             Hearts[i / 2] = obj.AddComponent<Image>();
-            obj.GetComponent<RectTransform>().sizeDelta = new(60, 60);
+            obj.GetComponent<RectTransform>().sizeDelta = new(30, 30);
         }
 
         for (int i = 0; i < Hearts.Length; i++)

@@ -139,6 +139,7 @@ public class AINavigator : MonoBehaviour
         rb.velocity = launcher * 10;
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (Vector2.Dot(collision.GetContact(0).normal, Vector2.up) > 0.85f)
