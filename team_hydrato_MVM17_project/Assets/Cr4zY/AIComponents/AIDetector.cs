@@ -128,7 +128,7 @@ public class AIDetector : MonoBehaviour
         }
     }
 
-    private void StopAggro()
+    public void StopAggro()
     {
         aggro = false;
         onAggroEnd?.Invoke();

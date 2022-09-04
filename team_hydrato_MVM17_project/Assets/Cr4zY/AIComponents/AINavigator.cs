@@ -97,6 +97,9 @@ public class AINavigator : MonoBehaviour
         {
             return;
         }
+
+        GetComponent<AIDetector>().StopAggro();
+
         boundHit += boundType switch
         {
             NavBoundType.LEFT => LeftBoundHit,
