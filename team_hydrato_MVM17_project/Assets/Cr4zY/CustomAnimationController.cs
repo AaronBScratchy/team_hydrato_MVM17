@@ -219,7 +219,10 @@ public class CustomAnimationController : MonoBehaviour
         performedHits.Clear();
 
         Invoke(nameof(NextHit), queuedHits.Peek().WaitTime);
-
-
     }
+
+    public void HitStop()
+    {
+    }
+
 }

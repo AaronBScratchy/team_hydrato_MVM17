@@ -13,6 +13,12 @@ public class AI_Idle : AbstractAIState
         nav.onRoam += Roam;
         detector.onAggroStart += Aggro;
         anim.PlayAnimation(clip, true);
+        pain.onHurt += Hurt;
+    }
+
+    private void Hurt()
+    {
+        onExit?.Invoke(AIState.HURT);
     }
 
     private void Aggro()
@@ -29,5 +35,6 @@ public class AI_Idle : AbstractAIState
     {
         nav.onRoam -= Roam;
         detector.onAggroStart -= Aggro;
+        pain.onHurt -= Hurt;
     }
 }

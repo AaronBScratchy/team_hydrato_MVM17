@@ -9,7 +9,8 @@ public enum AIState
     ROAM,
     AGGRO,
     ATTACK,
-    SUS
+    SUS,
+    HURT
 }
 public class AIStateMachine : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class AIStateMachine : MonoBehaviour
         states.Add(AIState.AGGRO, ScriptableObject.CreateInstance<AI_Aggro>());
         states.Add(AIState.ATTACK, ScriptableObject.CreateInstance<AI_Attack>());
         states.Add(AIState.SUS, ScriptableObject.CreateInstance<AI_Sus>());
+        states.Add(AIState.HURT, ScriptableObject.CreateInstance<AI_Hurt>());
 
         foreach (KeyValuePair<AIState, AbstractAIState> pair in states)
         {

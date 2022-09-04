@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class AINavigator : MonoBehaviour
 {
-    public Action boundHit, onRoam, onRest;
+    public Action boundHit, onRoam, onRest, landed;
     private Rigidbody2D rb;
     [SerializeField] private bool intentRight, constantMover;
+    public bool FacingPosX { get { return intentRight; } }
+
     [SerializeField] private float restTimeMin, restTimeMax, moveTimeMin, moveTimeMax, turnFreqMin, turnFreqMax, moveSpeed;
     private bool moving;
     public void Init()
@@ -23,13 +25,14 @@ public class AINavigator : MonoBehaviour
         CancelInvoke();
 
         bool targAhead = target.x - rb.position.x > 0 == rb.velocity.x > 0;
+        targAhead &= rb.velocity != Vector2.zero;
         if (targAhead)
         {
             return;
         }
 
         anim.SetFlip(!((target - rb.position).x > 0));
-        rb.velocity = (target - rb.position).x > 0 ? Vector2.right : Vector2.left;
+        rb.velocity = ((target - rb.position).x > 0 ? Vector2.right : Vector2.left) * moveSpeed;
 
     }
 
@@ -120,6 +123,7 @@ public class AINavigator : MonoBehaviour
     private void Land()
     {
         RestRB();
+        landed?.Invoke();
         rb.isKinematic = true;
         if (moving)
         {
@@ -132,8 +136,9 @@ public class AINavigator : MonoBehaviour
         CancelInvoke();
         rb.isKinematic = false;
         RestRB();
-        rb.velocity = launcher * 4;
+        rb.velocity = launcher * 10;
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
