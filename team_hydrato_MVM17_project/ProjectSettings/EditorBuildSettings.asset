@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Cr4zY/Scenes/ExampleSceneBuilding.unity
     guid: 9c2183c89722b2f438cb79adaafaf41f
   - enabled: 1
-    path: Assets/Leaviun/Demo2.unity
+    path: Assets/Leaviun/StartRoom.unity
     guid: 91c7c6a6f36781840a384257b4fc34c1
   m_configObjects: {}
