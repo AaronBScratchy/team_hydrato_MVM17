@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 public class PS_Running : AbstractUpdatingPS
 {
@@ -28,6 +29,7 @@ public class PS_Running : AbstractUpdatingPS
         actions.World.Horizontal.canceled += Rest;
         actions.World.Jump.performed += Jump;
         movement.falling += Fall;
+        actions.World.Attack.performed += Attack;
     }
 
     public override void OnStateExit(PIA actions)
@@ -37,6 +39,12 @@ public class PS_Running : AbstractUpdatingPS
         actions.World.Jump.performed -= Jump;
         movement.falling -= Fall;
         hurtBehaviour.hurt -= GetHurt;
+        actions.World.Attack.performed -= Attack;
+    }
+
+    private void Attack(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.Attacking);
     }
 
     protected override void OnFixedUpdate()

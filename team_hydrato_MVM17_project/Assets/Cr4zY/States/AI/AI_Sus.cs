@@ -14,6 +14,12 @@ public class AI_Sus : AbstractAIState
         detector.StartDoubtTimer();
         detector.doubtsCleared += Roam;
         detector.onAggroStart += Aggro;
+        pain.onHurt += Hurt;
+    }
+
+    private void Hurt()
+    {
+        onExit?.Invoke(AIState.HURT);
     }
 
     private void Aggro()
@@ -30,5 +36,6 @@ public class AI_Sus : AbstractAIState
     {
         detector.doubtsCleared -= Roam;
         detector.onAggroStart -= Aggro;
+        pain.onHurt -= Hurt;
     }
 }

@@ -11,9 +11,16 @@ public class AI_Roam : AbstractAIState
     public override void OnStateEnter()
     {
         nav.StartWalk();
+        anim.SetFlip(!nav.FacingPosX);
         nav.onRest += Rest;
         detector.onAggroStart += Aggro;
         anim.PlayAnimation(clip, true);
+        pain.onHurt += Hurt;
+    }
+
+    private void Hurt()
+    {
+        onExit?.Invoke(AIState.HURT);
     }
 
     private void Aggro()
@@ -30,5 +37,6 @@ public class AI_Roam : AbstractAIState
     {
         nav.onRest -= Rest;
         detector.onAggroStart -= Aggro;
+        pain.onHurt -= Hurt;
     }
 }

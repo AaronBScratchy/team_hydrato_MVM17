@@ -3,6 +3,7 @@ using UnityEngine;
 public class AIHurtBehaviour : MonoBehaviour, IHittable
 {
     [SerializeField] int health;
+    public Action onHurt;
     public void OnHit(PlayerHitBehaviour player)
     {
 
@@ -12,6 +13,7 @@ public class AIHurtBehaviour : MonoBehaviour, IHittable
         {
             Vector2 launchdir = (transform.position - player.transform.position).normalized + Vector3.up;
             GetComponent<AINavigator>().Launch(launchdir.normalized);
+            onHurt?.Invoke();
             return;
         }
 

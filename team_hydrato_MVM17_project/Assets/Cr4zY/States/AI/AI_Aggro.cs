@@ -9,9 +9,16 @@ public class AI_Aggro: AbstractAIState
     }
     public override void OnStateEnter()
     {
+        anim.PlayAnimation(clip,true);
         stateMachine.onUpdate += Update;
         detector.attackAttempt += Attack;
         detector.onAggroEnd += Doubt;
+        pain.onHurt += Hurt;
+    }
+
+    private void Hurt()
+    {
+        onExit?.Invoke(AIState.HURT);
     }
 
     private void Doubt()
@@ -34,6 +41,8 @@ public class AI_Aggro: AbstractAIState
     private void Update()
     {
         nav.MoveTowards(detector.Target, anim);
+        pain.onHurt -= Hurt;
+
     }
 }
 

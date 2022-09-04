@@ -16,6 +16,20 @@ public class AIDetector : MonoBehaviour
         canAttack = true;
     }
 
+    public bool PlayerPresence()
+    {
+
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, noticeRange.radius, Vector2.zero);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.TryGetComponent<CharacterMovement>(out _))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private CircleCollider2D MakeRangeCollider(string name, float radius)
     {
         CircleCollider2D collider = new GameObject(name).AddComponent<CircleCollider2D>();
@@ -69,6 +83,7 @@ public class AIDetector : MonoBehaviour
         if (canAttack)
         {
             attackAttempt?.Invoke();
+            StartRecovery();
         }
     }
 
@@ -115,6 +130,7 @@ public class AIDetector : MonoBehaviour
 
     private void StopAggro()
     {
+        aggro = false;
         onAggroEnd?.Invoke();
     }
 }

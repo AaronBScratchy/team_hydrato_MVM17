@@ -2,7 +2,7 @@
 using System;
 public abstract class AbstractAIState : ScriptableObject
 {
-    protected AIHurtBehaviour hurt;
+    protected AIHurtBehaviour pain;
     protected AIDetector detector;
     protected AIStateMachine stateMachine;
     protected AINavigator nav;
@@ -12,7 +12,7 @@ public abstract class AbstractAIState : ScriptableObject
     public Action<AIState> onExit;
     public virtual void Init(AINavigator _n, AIStateMachine _s, AIDetector _d, AIHurtBehaviour _h, CustomAnimationController _a)
     {
-        hurt = _h;
+        pain = _h;
         detector = _d;
         stateMachine = _s;
         nav = _n;
