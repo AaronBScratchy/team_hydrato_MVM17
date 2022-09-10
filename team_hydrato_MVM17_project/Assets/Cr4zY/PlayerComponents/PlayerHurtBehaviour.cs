@@ -63,8 +63,8 @@ public class PlayerHurtBehaviour : MonoBehaviour
             }
         }
 
-        IB = true;
-        Invoke(nameof(TurnOffIB), 1.25f);
+        ToggleIB();
+        Invoke(nameof(ToggleIB), 1.25f);
     }
 
     public void Die()
@@ -72,8 +72,8 @@ public class PlayerHurtBehaviour : MonoBehaviour
         checkPointer.onDeath?.Invoke();
     }
 
-    private void TurnOffIB()
+    public void ToggleIB()
     {
-        IB = false;
+        IB = !IB;
     }
 }

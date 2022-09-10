@@ -17,15 +17,26 @@ public class AIStateMachine : MonoBehaviour
     private Dictionary<AIState, AbstractAIState> states = new();
     public Action onUpdate, onFixedUpdate;
     private AbstractAIState currentState;
+    [SerializeField] private bool overrideStates;
+    [SerializeField] AIStateMachineOverride stateOverride;
 
     public void Init(AIDetector detector, AIHurtBehaviour hurt, AINavigator nav, CustomAnimationController anim, string animationName)
     {
-        states.Add(AIState.ROAM, ScriptableObject.CreateInstance<AI_Roam>());
-        states.Add(AIState.IDLE, ScriptableObject.CreateInstance<AI_Idle>());
-        states.Add(AIState.AGGRO, ScriptableObject.CreateInstance<AI_Aggro>());
-        states.Add(AIState.ATTACK, ScriptableObject.CreateInstance<AI_Attack>());
-        states.Add(AIState.SUS, ScriptableObject.CreateInstance<AI_Sus>());
-        states.Add(AIState.HURT, ScriptableObject.CreateInstance<AI_Hurt>());
+        if (overrideStates) {
+
+            stateOverride.Init();
+            states = stateOverride.Overrides;
+
+        }
+        else {
+
+            states.Add(AIState.ROAM, ScriptableObject.CreateInstance<AI_Roam>());
+            states.Add(AIState.IDLE, ScriptableObject.CreateInstance<AI_Idle>());
+            states.Add(AIState.AGGRO, ScriptableObject.CreateInstance<AI_Aggro>());
+            states.Add(AIState.ATTACK, ScriptableObject.CreateInstance<AI_Attack>());
+            states.Add(AIState.SUS, ScriptableObject.CreateInstance<AI_Sus>());
+            states.Add(AIState.HURT, ScriptableObject.CreateInstance<AI_Hurt>()); 
+        }
 
         foreach (KeyValuePair<AIState, AbstractAIState> pair in states)
         {

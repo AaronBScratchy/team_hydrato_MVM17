@@ -36,12 +36,12 @@ public class AI_Aggro: AbstractAIState
         detector.attackAttempt -= Attack;
         stateMachine.onUpdate -= Update;
         detector.onAggroEnd -= Doubt;
+        pain.onHurt -= Hurt;
     }
 
     private void Update()
     {
         nav.MoveTowards(detector.Target, anim);
-        pain.onHurt -= Hurt;
 
     }
 }

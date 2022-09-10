@@ -128,6 +128,7 @@ MonoBehaviour:
   turnFreqMin: 0.35
   turnFreqMax: 0.5
   moveSpeed: 2
+  gravScale: 3
 --- !u!114 &8446350034989586663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e1dfa82a3834e4ea3f64ed2b3e9220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overrideStates: 0
+  stateOverride: {fileID: 0}
 --- !u!114 &8446350034989586667
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PS_Jump : AbstractUpdatingPS
@@ -17,10 +18,18 @@ public class PS_Jump : AbstractUpdatingPS
         anim.PlayAnimation(clip, false);
         movement.falling += Fall;
         actions.World.Horizontal.performed += TurnAdjust;
+        actions.World.Attack.performed += AirAttack;
+        actions.BrokenHorn.Special.performed += AirDash;
         movement.wallTouch += WallSlide;
         hurtBehaviour.hurt += GetHurt;
 
     }
+
+    private void AirDash(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.AirDash);
+    }
+
     public override void OnStateExit(PIA actions)
     {
         base.OnStateExit(actions);
@@ -28,6 +37,13 @@ public class PS_Jump : AbstractUpdatingPS
         actions.World.Horizontal.performed -= TurnAdjust;
         movement.wallTouch -= WallSlide;
         hurtBehaviour.hurt -= GetHurt;
+        actions.World.Attack.performed -= AirAttack;
+        actions.BrokenHorn.Special.performed-= AirDash;
+    }
+
+    private void AirAttack(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.Aerial);
     }
 
     protected override void OnFixedUpdate()

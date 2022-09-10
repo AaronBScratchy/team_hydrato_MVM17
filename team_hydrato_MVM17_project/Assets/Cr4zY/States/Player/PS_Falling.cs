@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 public class PS_Falling : AbstractUpdatingPS
 {
@@ -14,9 +15,16 @@ public class PS_Falling : AbstractUpdatingPS
         anim.PlayAnimation(clip, true);
         hurtBehaviour.hurt += GetHurt;
         movement.landed += Land;
-        actions.World.Horizontal.performed += TurnAdjust; 
+        actions.World.Horizontal.performed += TurnAdjust;
+        actions.World.Attack.performed += Attack;
+        actions.BrokenHorn.Special.performed += AirDash;
         movement.wallTouch += WallSlide;
 
+    }
+
+    private void AirDash(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.AirDash);
     }
 
     public override void OnStateExit(PIA actions)
@@ -26,8 +34,16 @@ public class PS_Falling : AbstractUpdatingPS
         hurtBehaviour.hurt -= GetHurt;
 
         actions.World.Horizontal.performed -= TurnAdjust;
+        actions.World.Attack.performed -= Attack;
+        actions.BrokenHorn.Special.performed -= AirDash;
         movement.wallTouch -= WallSlide;
     }
+
+    private void Attack(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.Aerial);
+    }
+
     private void GetHurt()
     {
         OnExit?.Invoke(State.Hurt);

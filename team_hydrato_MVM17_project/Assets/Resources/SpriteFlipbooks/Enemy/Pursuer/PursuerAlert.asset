@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: PursuerAlert
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: -1158354413, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -2139789264, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 1417213798, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 229985525, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 1737063380, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 845282976, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 1295446642, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: 1508185563, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12
+  - _sprite: {fileID: -1338871230, guid: 5241c7c1cf7c3ea42b1a5e5d09b436a1, type: 3}
+    _time: 0.12

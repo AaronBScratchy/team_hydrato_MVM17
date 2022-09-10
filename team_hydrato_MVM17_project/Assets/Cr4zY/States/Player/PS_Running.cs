@@ -30,6 +30,7 @@ public class PS_Running : AbstractUpdatingPS
         actions.World.Jump.performed += Jump;
         movement.falling += Fall;
         actions.World.Attack.performed += Attack;
+        actions.BrokenHorn.Special.performed += Slide;
     }
 
     public override void OnStateExit(PIA actions)
@@ -40,6 +41,12 @@ public class PS_Running : AbstractUpdatingPS
         movement.falling -= Fall;
         hurtBehaviour.hurt -= GetHurt;
         actions.World.Attack.performed -= Attack;
+        actions.BrokenHorn.Special.performed -= Slide;
+    }
+
+    private void Slide(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.Sliding);
     }
 
     private void Attack(InputAction.CallbackContext obj)

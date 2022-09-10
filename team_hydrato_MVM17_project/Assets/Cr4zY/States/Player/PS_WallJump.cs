@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class PS_WallJump : AbstractUpdatingPS
 {
@@ -15,9 +15,21 @@ public class PS_WallJump : AbstractUpdatingPS
         movement.WallJump();
         movement.wallTouch += WallSlide;
         movement.falling += Fall;
+        actions.World.Attack.performed += Attack;
+        actions.BrokenHorn.Special.performed += AirDash;
         hurtBehaviour.hurt += GetHurt;
         anim.Flip();
         anim.PlayAnimation(clip, false);
+    }
+
+    private void Attack(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.Aerial);
+    }
+
+    private void AirDash(InputAction.CallbackContext obj)
+    {
+        OnExit?.Invoke(State.AirDash);
     }
 
     protected override void OnFixedUpdate()
@@ -35,6 +47,8 @@ public class PS_WallJump : AbstractUpdatingPS
         movement.wallTouch -= WallSlide;
         movement.falling -= Fall;
         hurtBehaviour.hurt -= GetHurt;
+        actions.World.Attack.performed -= Attack;
+        actions.BrokenHorn.Special.performed -= AirDash;
 
     }
     private void GetHurt()

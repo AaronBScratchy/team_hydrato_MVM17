@@ -372,15 +372,6 @@ public partial class @PIA : IInputActionCollection2, IDisposable
             ""id"": ""9d00d2b6-cb15-4270-a9fc-eaade6ef4f2f"",
             ""actions"": [
                 {
-                    ""name"": ""HornExclusive"",
-                    ""type"": ""Button"",
-                    ""id"": ""6e8224d9-60f3-42cc-bf24-9fad5857941e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""3a6b80f5-c9d4-4c4a-ab34-f8e66926bae9"",
@@ -388,20 +379,18 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Special"",
+                    ""type"": ""Button"",
+                    ""id"": ""3948c08f-280e-45d3-8ddd-30821ff5a305"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""09bfe964-d384-4dee-8c05-685b188d1d77"",
-                    ""path"": ""<Keyboard>/comma"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HornExclusive"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""4bfd7129-a9fd-47c3-8550-540173ebade3"",
@@ -454,6 +443,17 @@ public partial class @PIA : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""447f1707-f23c-4a67-97a9-166183b04a7f"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -577,8 +577,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
         // BrokenHorn
         m_BrokenHorn = asset.FindActionMap("BrokenHorn", throwIfNotFound: true);
-        m_BrokenHorn_HornExclusive = m_BrokenHorn.FindAction("HornExclusive", throwIfNotFound: true);
         m_BrokenHorn_Jump = m_BrokenHorn.FindAction("Jump", throwIfNotFound: true);
+        m_BrokenHorn_Special = m_BrokenHorn.FindAction("Special", throwIfNotFound: true);
         // Scythe
         m_Scythe = asset.FindActionMap("Scythe", throwIfNotFound: true);
         m_Scythe_Ability1 = m_Scythe.FindAction("Ability1", throwIfNotFound: true);
@@ -731,14 +731,14 @@ public partial class @PIA : IInputActionCollection2, IDisposable
     // BrokenHorn
     private readonly InputActionMap m_BrokenHorn;
     private IBrokenHornActions m_BrokenHornActionsCallbackInterface;
-    private readonly InputAction m_BrokenHorn_HornExclusive;
     private readonly InputAction m_BrokenHorn_Jump;
+    private readonly InputAction m_BrokenHorn_Special;
     public struct BrokenHornActions
     {
         private @PIA m_Wrapper;
         public BrokenHornActions(@PIA wrapper) { m_Wrapper = wrapper; }
-        public InputAction @HornExclusive => m_Wrapper.m_BrokenHorn_HornExclusive;
         public InputAction @Jump => m_Wrapper.m_BrokenHorn_Jump;
+        public InputAction @Special => m_Wrapper.m_BrokenHorn_Special;
         public InputActionMap Get() { return m_Wrapper.m_BrokenHorn; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -748,22 +748,22 @@ public partial class @PIA : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_BrokenHornActionsCallbackInterface != null)
             {
-                @HornExclusive.started -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnHornExclusive;
-                @HornExclusive.performed -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnHornExclusive;
-                @HornExclusive.canceled -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnHornExclusive;
                 @Jump.started -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnJump;
+                @Special.started -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnSpecial;
+                @Special.performed -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnSpecial;
+                @Special.canceled -= m_Wrapper.m_BrokenHornActionsCallbackInterface.OnSpecial;
             }
             m_Wrapper.m_BrokenHornActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @HornExclusive.started += instance.OnHornExclusive;
-                @HornExclusive.performed += instance.OnHornExclusive;
-                @HornExclusive.canceled += instance.OnHornExclusive;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Special.started += instance.OnSpecial;
+                @Special.performed += instance.OnSpecial;
+                @Special.canceled += instance.OnSpecial;
             }
         }
     }
@@ -822,8 +822,8 @@ public partial class @PIA : IInputActionCollection2, IDisposable
     }
     public interface IBrokenHornActions
     {
-        void OnHornExclusive(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSpecial(InputAction.CallbackContext context);
     }
     public interface IScytheActions
     {

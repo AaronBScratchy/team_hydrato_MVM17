@@ -25,6 +25,8 @@ public class PS_Attacking : AbstractUpdatingPS
 
         hurtBehaviour.hurt += GetHurt;
 
+        movement.FacingPosX = !movement.GetComponent<SpriteRenderer>().flipX;
+
         if (index < 0)
         {
             stateMachine.onUpdate += OnUpdate;
@@ -115,7 +117,7 @@ public class PS_Attacking : AbstractUpdatingPS
 
     public override void BindStateAnimation(string currentChar)
     {
-        attackClips = Resources.LoadAll<AttackingAnimationClip>("AnimationClips/Player/Attacks/" + currentChar);
+        attackClips = Resources.LoadAll<AttackingAnimationClip>("AnimationClips/Player/Attacks/" + currentChar + "/Combo");
     }
 
 

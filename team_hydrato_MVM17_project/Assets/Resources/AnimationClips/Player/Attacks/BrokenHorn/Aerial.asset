@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04c5dc630ef73844ba9b044a657b940, type: 3}
+  m_Name: Aerial
+  m_EditorClassIdentifier: 
+  sound: {fileID: 0}
+  flipbook: {fileID: 11400000, guid: c23e00f7fc5fb3b4e936458dc4f67a30, type: 2}
+  m_muted: 1
+  hits: {fileID: 11400000, guid: eca4490b2ab83a44ea2a4e5fa7e510d3, type: 2}
+  window:
+    start: 0
+    end: 0
+    bufferTime: 0
+  cancellable: 0

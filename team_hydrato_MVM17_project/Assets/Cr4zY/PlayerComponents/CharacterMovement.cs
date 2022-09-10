@@ -12,9 +12,8 @@ public class CharacterMovement : MonoBehaviour
     //Last contacted surfaces references
     private Collider2D currentWall, currentGround;
 
-
     //Actions for movement events
-    public Action falling, wallLeft, wallTouch, turn, turnComplete;
+    public Action falling, wallLeft, wallTouch, turn, turnComplete, dashEnd;
 
 
     public Action<bool> landed;
@@ -140,9 +139,6 @@ public class CharacterMovement : MonoBehaviour
         //apply horizontal acceleration
         xCom += MoveX.ReadValue<float>() * acceleration * Time.fixedDeltaTime;
         xCom = (_posX ? Mathf.Min(xCom, maxSpeed) : Mathf.Max(xCom, -maxSpeed));
-
-        //gravity applied here
-        yCom -= gravityScale * Time.fixedDeltaTime;
 
         //Catch turn attempt logic
         if (rb.velocity.x != 0)
@@ -405,5 +401,23 @@ public class CharacterMovement : MonoBehaviour
         }
         rb.velocity += ((boundsLeft * 0.1f) + 0.7f) * 16.5f * Vector2.up;
         boundsLeft--;
+    }
+    public bool StartDash()
+    {
+        RestRB();
+
+        FacingPosX |= MoveX.ReadValue<float>() > 0;
+
+        rb.velocity = (FacingPosX ? Vector2.right : Vector2.left) * 40;
+
+        Invoke(nameof(EndDash), 0.14f);
+
+        return !FacingPosX;
+
+    }
+
+    private void EndDash()
+    {
+        dashEnd?.Invoke();
     }
 }

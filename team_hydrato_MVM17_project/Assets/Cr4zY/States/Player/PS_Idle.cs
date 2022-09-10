@@ -21,6 +21,7 @@ public class PS_Idle : AbstractUpdatingPS
         actions.World.CharacterSwitchBack.performed += ChangeToPrev;
         actions.World.Attack.performed += Attack;
         hurtBehaviour.hurt += GetHurt;
+        actions.BrokenHorn.Special.performed += Slide;
     }
 
     public override void OnStateExit(PIA actions)
@@ -32,7 +33,13 @@ public class PS_Idle : AbstractUpdatingPS
         actions.World.CharacterSwitchFwd.performed -= ChangeToNext;
         actions.World.CharacterSwitchBack.performed -= ChangeToPrev;
         actions.World.Attack.performed -= Attack;
+        actions.BrokenHorn.Special.performed -= Slide;
         hurtBehaviour.hurt -= GetHurt;
+    }
+
+    private void Slide(InputAction.CallbackContext obj)
+    {
+        OnExit.Invoke(State.Sliding);
     }
 
     protected override void OnUpdate()

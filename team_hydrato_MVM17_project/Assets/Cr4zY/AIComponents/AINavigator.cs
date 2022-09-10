@@ -10,14 +10,24 @@ public class AINavigator : MonoBehaviour
     [SerializeField] private bool intentRight, constantMover;
     public bool FacingPosX { get { return intentRight; } }
 
-    [SerializeField] private float restTimeMin, restTimeMax, moveTimeMin, moveTimeMax, turnFreqMin, turnFreqMax, moveSpeed;
+    [SerializeField] private float restTimeMin, restTimeMax, moveTimeMin, moveTimeMax, turnFreqMin, turnFreqMax, moveSpeed, gravScale;
     private bool moving;
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
-        rb.gravityScale = 3;
+        rb.gravityScale = 0;
         Invoke(nameof(Roam), UnityEngine.Random.Range(restTimeMin, restTimeMax));
+    }
+
+    public void MoveTowards2D(Vector2 target, CustomAnimationController anim)
+    {
+        CancelInvoke();
+
+        Vector2 targetDir = (target - rb.position).normalized;
+
+        rb.velocity = targetDir * moveSpeed;
+        anim.SetFlip(rb.velocity.x < 0);
+
     }
 
     public void MoveTowards(Vector2 target, CustomAnimationController anim)
@@ -104,6 +114,7 @@ public class AINavigator : MonoBehaviour
         {
             NavBoundType.LEFT => LeftBoundHit,
             NavBoundType.RIGHT => RightBoundHit,
+            NavBoundType.ENCLOSURE => EnclosureHit,
             NavBoundType.ENTRY => throw new NotImplementedException(),
             _ => BoundNull,
         };
@@ -111,6 +122,11 @@ public class AINavigator : MonoBehaviour
         boundHit = null;
     }
 
+    private void EnclosureHit()
+    {
+        GetComponent<CustomAnimationController>().SetFlip(rb.velocity.x > 0);
+        rb.velocity *= -1;
+    }
 
     private void LeftBoundHit()
     {
@@ -127,21 +143,22 @@ public class AINavigator : MonoBehaviour
     {
         RestRB();
         landed?.Invoke();
-        rb.isKinematic = true;
-        if (moving)
-        {
-            StartWalk();
-        }
+        ToggleGravity(false);
     }
 
-    public void Launch(Vector2 launcher)
+    public void Launch(Vector2 launcher, float power)
     {
         CancelInvoke();
-        rb.isKinematic = false;
         RestRB();
-        rb.velocity = launcher * 10;
+        ToggleGravity(true);
+        rb.velocity = launcher * power;
     }
-
+    public void KinematicLaunch(Vector2 launcher, float power)
+    {
+        CancelInvoke();
+        RestRB();
+        rb.velocity = launcher * power;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -150,6 +167,40 @@ public class AINavigator : MonoBehaviour
             Land();
             return;
         }
+    }
+
+
+    public void RW2D_Roam()
+    {
+
+        rb.velocity = new Vector2((UnityEngine.Random.value * 2) - 1, (UnityEngine.Random.value * 2) - 1).normalized * moveSpeed;
+        moving = true;
+
+        if (constantMover)
+        {
+            Invoke(nameof(RW2D_Roam), UnityEngine.Random.Range(moveTimeMin, moveTimeMax));
+            return;
+        }
+
+        Invoke(nameof(RW2D_Rest), UnityEngine.Random.Range(moveTimeMin, moveTimeMax));
+
+    }
+
+    public void ToggleGravity()
+    {
+        ToggleGravity(rb.gravityScale == 0);
+    }
+
+    public void ToggleGravity(bool on)
+    {
+        rb.gravityScale = on ? gravScale : 0;
+    }
+
+    private void RW2D_Rest()
+    {
+        CancelInvoke(nameof(RW2D_Roam));
+        RestRB();
+        onRest?.Invoke();
     }
 
 }

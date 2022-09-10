@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: PursuerUnveil
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: 982177361, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 1247760874, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: -1934907485, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 326188581, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 1040925519, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 882558870, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: -2074013432, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 263487328, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 752027694, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: -718479386, guid: a8389850d2d17884da7f793ab7f39dbd, type: 3}
+    _time: 0.06

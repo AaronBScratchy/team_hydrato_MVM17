@@ -15,7 +15,10 @@ public enum State
     WallCling,
     WallBound,
     Attacking,
-    Hurt
+    Hurt,
+    Aerial,
+    AirDash,
+    Sliding
 }
 
 public class CharacterStateMachine : MonoBehaviour
@@ -42,6 +45,9 @@ public class CharacterStateMachine : MonoBehaviour
         states.Add(State.WallBound, ScriptableObject.CreateInstance<PS_WallBound>());
         states.Add(State.Attacking, ScriptableObject.CreateInstance<PS_Attacking>());
         states.Add(State.Hurt, ScriptableObject.CreateInstance<PS_Hurt>());
+        states.Add(State.Aerial, ScriptableObject.CreateInstance<PS_AirAttack>());
+        states.Add(State.AirDash, ScriptableObject.CreateInstance<PS_AirDash>());
+        states.Add(State.Sliding, ScriptableObject.CreateInstance<PS_SlideDodge>());
 
         foreach (KeyValuePair<State, AbstractPlayerState> pair in states)
         {

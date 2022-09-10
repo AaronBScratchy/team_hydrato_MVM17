@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542036fe4992f714e80ed27424d5b444, type: 3}
+  m_Name: BucklerSpinB
+  m_EditorClassIdentifier: 
+  frames:
+  - _sprite: {fileID: -68953281, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 1052927101, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: -1421195529, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 380209539, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 1055308949, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: -1944953071, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 990779600, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06
+  - _sprite: {fileID: 1776047292, guid: 1a0d2e24a989e394ebdfb3db837d1b19, type: 3}
+    _time: 0.06

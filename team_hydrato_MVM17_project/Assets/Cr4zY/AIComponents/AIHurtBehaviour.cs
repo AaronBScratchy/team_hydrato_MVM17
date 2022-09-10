@@ -11,9 +11,9 @@ public class AIHurtBehaviour : MonoBehaviour, IHittable
 
         if (health > 0)
         {
-            Vector2 launchdir = (transform.position - player.transform.position).normalized + Vector3.up;
-            GetComponent<AINavigator>().Launch(launchdir.normalized);
             onHurt?.Invoke();
+            Vector2 launchdir = (transform.position - player.transform.position).normalized + Vector3.up;
+            GetComponent<AINavigator>().Launch(launchdir.normalized, 7.5f);
             return;
         }
 

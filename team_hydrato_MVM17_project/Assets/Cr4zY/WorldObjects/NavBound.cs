@@ -7,6 +7,7 @@ public enum NavBoundType
 {
     LEFT,
     RIGHT,
+    ENCLOSURE,
     ENTRY
 }
 public class NavBound : MonoBehaviour
